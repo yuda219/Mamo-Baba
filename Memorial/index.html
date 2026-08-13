@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>לזכרם של סבא וסבתא</title>
+    <title>לזכרם של שושנה ויהודה סבג ז"ל</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <meta name="theme-color" content="#f3f4f6">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap');
         body { font-family: 'Heebo', sans-serif; }
         .fade-in { animation: fadeIn 1.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -21,41 +21,103 @@
 
     <div class="max-w-2xl mx-auto bg-white min-h-screen shadow-2xl overflow-hidden pb-10">
         
-        <!-- Header Section - כאן התמונה המשפחתית נכנסת -->
+        <!-- Header Section עם התמונה המשפחתית -->
         <div class="relative h-72 md:h-96 flex justify-center items-end pb-8 bg-stone-800" style="background-image: url('bg.jpg'); background-size: cover; background-position: center 30%;">
-            <!-- שכבת השחרה עדינה כדי שהתמונה העגולה והטקסט לא ילכו לאיבוד -->
-            <div class="absolute inset-0 bg-stone-900 opacity-20"></div>
-            
-            <!-- תמונה ראשית עגולה של סבא וסבתא (שנה את שם הקובץ ל-main.jpg) -->
+            <div class="absolute inset-0 bg-stone-900 opacity-25"></div>
+            <!-- תמונה ראשית עגולה -->
             <img src="main.jpg" alt="סבא וסבתא" class="absolute -bottom-16 w-36 h-36 rounded-full border-4 border-white shadow-lg object-cover z-10 bg-white" onerror="this.style.display='none'">
         </div>
 
         <!-- Info Section -->
         <div class="pt-24 px-8 text-center fade-in">
-            <h1 class="text-3xl font-semibold text-stone-900 mb-2">שושנה סוזן ויהודה סבג ז"ל</h1>
-            <h2 class="text-xl text-stone-600 font-medium mb-4">ז'אז'ו ובאבא יהודה</h2>
-            <p class="text-stone-500 font-light mb-6">"כאן יופיע משפט משותף, תאריכים או ציטוט..."</p>
+            <h1 class="text-3xl font-bold text-stone-900 mb-1">יהודה ושושנה (סוזן) סבג ז"ל</h1>
+            <h2 class="text-lg text-amber-800 font-semibold mb-4">באבא יהודה וז'אז'ו</h2>
+            <p class="text-stone-500 font-light mb-2">יהודה סבג ז"ל: 1927 – 2004 | תרפ"ז – תשס"ד</p>
+            <p class="text-base leading-relaxed text-stone-700 italic border-y border-stone-200 py-3 my-4">
+                "סיפור חיים, מורשת, משפחה ומוזיקה – צלילי העוד אולי נדמו, אך המנגינה שהשאיר בלב כולנו ממשיכה להתנגן."
+            </p>
         </div>
 
-        <div class="px-8 py-10 space-y-12">
+        <div class="px-8 py-8 space-y-12">
             
             <!-- Timeline / Biography -->
             <section>
-                <h2 class="text-xl font-semibold text-stone-800 mb-6 border-b border-stone-200 pb-2">סיפור חיים</h2>
-                <div class="relative border-r-2 border-stone-200 pr-6 space-y-6 text-right" id="bio-section">
+                <h2 class="text-2xl font-bold text-stone-800 mb-6 border-b-2 border-amber-700/40 pb-2">סיפור חייו של יהודה סבג ז"ל</h2>
+                
+                <div class="relative border-r-2 border-stone-200 pr-6 space-y-8 text-right">
+                    
+                    <!-- תחנה 1 -->
                     <div class="relative">
-                        <div class="absolute -right-[31px] bg-stone-400 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-semibold text-stone-800">תחנה ראשונה</h3>
-                        <p class="text-gray-600 text-sm mt-1">בקרוב נמלא כאן את הפרטים...</p>
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">1927 | ילדות ושורשים בסאפי ומרקש</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            יהודה סבג ז״ל נולד בעיר סאפי שבמרוקו, בן בכור לשמעון וסעדה ז״ל. משפחת סבג הייתה משפחה שורשית של רבנים ואנשי חברה קדישא. המשפחה עברה למרקש, שם גדל יהודה ושם החלה להיבנות אישיותו – שילוב של חריצות, אהבת תורה, אהבת אדם ואהבה עמוקה למוזיקה. הוא למד בבית הספר "אליאנס" ובערבים למד תורה בישיבה.
+                        </p>
                     </div>
+
+                    <!-- תחנה 2 -->
+                    <div class="relative">
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">"קנקן תה בכל יום" – האהבה לעוד</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            בגיל 11, בעת שלמד את מלאכת הספרות במספרת דודו, התבונן שעות בנגנים בחנות של האמרגן דוד זריהן ז״ל. האמרגן שאל אותו אם ברצונו ללמוד לנגן, וכשיהודה השיב בחיוב, אמר לו בחיוך: <br>
+                            <span class="italic font-semibold text-amber-900">"בְרַד דֶאַתִיי יוֹם יוֹם וְאַנָא הִנְעֶלֶמֶלֶק סֶנְעָת אֶלְעוּד"</span><br>
+                            (התשלום שלך יהיה קנקן תה בכל יום, ואני אלמד אותך לנגן על עוד).
+                        </p>
+                    </div>
+
+                    <!-- תחנה 3 -->
+                    <div class="relative">
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">מתלמיד לאמן דגול במרוקו</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            יהודה הפך לנגן עוד מקצועי וזמר מוערך. הוא התמחה במוזיקה אנדלוסית, מוזיקת אללה, שירה מצרית, שעבי ופיוטי הבקשות. שמו יצא למרחוק, והוא הוזמן להופיע באירועים רבים במרוקו ואף ללמד נגינה את בתו של מושל מרקש.
+                        </p>
+                    </div>
+
+                    <!-- תחנה 4 -->
+                    <div class="relative">
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">1949–1954 | העלייה לארץ ישראל והקמת הבית</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            בשנת 1949 עלה לראשונה לארץ עם חברתו זאזו (שושנה) בת ה-15 והשניים נישאו בחיפה. לאחר תקופה קצרה במעברת בית ליד וחזרה למרוקו, עלו שוב בשנת 1954 כדי להישאר לתמיד. המשפחה קבעה את ביתה בירושלים (בבקעה ולאחר מכן ברחוב רשב"ג), ויהודה פתח את "מספרת הדרום" בדרך בית לחם. נולדו להם ארבע בנות: פלורנס (אורה), יעל, יהודית ואלישבע (ויוון).
+                        </p>
+                    </div>
+
+                    <!-- תחנה 5 -->
+                    <div class="relative">
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">הספרות, הנגינה והמשכיות המקצוע</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            ביום עבד כספר ובלילה ניגן ושר בשמחות של הקהילות הירושלמיות. בשנת 1972, בעת שיהודה ישב שבעה על אביו, בנו בן ה-12 סיפר לקוח במספרה. כששמע יהודה שהתספורת יצאה מצוינת, הפך האירוע לנקודת מפנה – ומאז עבדו יחד במספרה. בשנת 1978 סגר את המספרה והקדיש את זמנו למוזיקה.
+                        </p>
+                    </div>
+
+                    <!-- תחנה 6 -->
+                    <div class="relative">
+                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
+                        <h3 class="font-bold text-lg text-stone-900">2004 | פרישה בכבוד ופטירתו</h3>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
+                            יהודה ידע לפרוש מהבמה בעודו בשיאו כדי להשאיר זיכרון של אמן דגול. בשנותיו האחרונות התמודד עם מחלת האלצהיימר. ביום י״ג באלול תשס״ד (31 באוגוסט 2004) החזיר את נשמתו לבורא.
+                        </p>
+                    </div>
+
                 </div>
+            </section>
+
+            <!-- מקום מנוחתו -->
+            <section class="bg-stone-100 p-5 rounded-xl border border-stone-200 text-center">
+                <h3 class="font-bold text-stone-800 text-lg mb-1">📍 מקום מנוחתו</h3>
+                <p class="text-stone-700 text-sm">
+                    יהודה סבג ז״ל נטמן בבית העלמין גבעת שאול, ירושלים.<br>
+                    <strong>כביש 9 | גוש מ״ב | חלקה י׳</strong>
+                </p>
             </section>
 
             <!-- Media Gallery -->
             <section>
-                <h2 class="text-xl font-semibold text-stone-800 mb-6 border-b border-stone-200 pb-2">גלריית זיכרונות</h2>
+                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">גלריית זיכרונות</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <!-- תמונות הגלריה - ודא שיש קבצים בשם pic1.jpg ו-pic2.jpg בתיקייה -->
                     <img src="pic1.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 1" onerror="this.style.display='none'">
                     <img src="pic2.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 2" onerror="this.style.display='none'">
                 </div>
@@ -72,12 +134,12 @@
 
             <!-- Guestbook -->
             <section>
-                <h2 class="text-xl font-semibold text-stone-800 mb-6 border-b border-stone-200 pb-2">ספר מבקרים וזיכרונות</h2>
+                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">ספר מבקרים וזיכרונות</h2>
                 
                 <form id="messageForm" class="mb-8 space-y-4">
                     <input type="text" id="senderName" placeholder="השם שלך" required class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white">
                     <textarea id="messageText" placeholder="כתוב זיכרון משותף, הקדשה או מילה טובה..." required rows="3" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white"></textarea>
-                    <button type="submit" class="w-full bg-stone-600 text-white px-4 py-2 rounded-lg hover:bg-stone-500 transition duration-300 font-semibold">שלח הקדשה</button>
+                    <button type="submit" class="w-full bg-stone-700 text-white px-4 py-2 rounded-lg hover:bg-stone-600 transition duration-300 font-semibold">שלח הקדשה</button>
                 </form>
 
                 <div id="messagesList" class="space-y-4 max-h-96 overflow-y-auto messages-container pr-2"></div>
@@ -132,7 +194,7 @@
         function setCandleLitUI() {
             candleBtn.innerHTML = "<span class='text-xl'>🕯️</span><span>הנר שלך דולק</span>";
             candleBtn.classList.remove('bg-stone-800', 'hover:bg-stone-700');
-            candleBtn.classList.add('bg-amber-600', 'cursor-default');
+            candleBtn.classList.add('bg-amber-700', 'cursor-default');
         }
 
         // Guestbook Logic
