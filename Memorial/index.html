@@ -6,278 +6,353 @@
     <title>לזכרם של שושנה ויהודה סבג ז"ל</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="theme-color" content="#f3f4f6">
+    <meta name="theme-color" content="#faf9f6">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&display=swap');
-        body { font-family: 'Heebo', sans-serif; }
-        .fade-in { animation: fadeIn 1.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;600&display=swap');
+        
+        body { 
+            font-family: 'Heebo', sans-serif; 
+            background-color: #faf9f6; 
+            color: #292524;
+        }
+        h1, h2, h3, .font-serif-custom {
+            font-family: 'Frank Ruhl Libre', serif;
+        }
+        
+        /* אנימציות */
+        .fade-in { animation: fadeIn 1.2s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slow-zoom {
+            animation: slowZoom 20s infinite alternate linear;
+        }
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
         /* פס גלילה */
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #d6d3d1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #a8a29e; border-radius: 10px; }
+        
+        /* כרטיסיות ציר זמן */
+        .timeline-card {
+            background: #ffffff;
+            border: 1px solid #f5f5f4;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -2px rgba(0, 0, 0, 0.08);
+        }
+
+        /* שדות קלט יוקרתיים */
+        .input-elegant {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #e7e5e4;
+            border-radius: 0;
+            padding: 10px 5px;
+            transition: border-color 0.3s ease;
+        }
+        .input-elegant:focus {
+            outline: none;
+            border-bottom-color: #92400e;
+        }
     </style>
 </head>
-<body class="bg-stone-50 text-gray-800 antialiased selection:bg-stone-300">
+<body class="antialiased selection:bg-amber-200 selection:text-amber-900 relative">
 
-    <div class="max-w-2xl mx-auto bg-white min-h-screen shadow-2xl overflow-hidden pb-10">
+    <div class="max-w-3xl mx-auto bg-white min-h-screen shadow-2xl overflow-hidden pb-16 border-x border-stone-100">
         
-        <!-- Header Section -->
-        <div class="relative h-72 md:h-96 flex justify-center items-end pb-8 bg-stone-800" style="background-image: url('bg.jpg'); background-size: cover; background-position: center 30%;">
-            <div class="absolute inset-0 bg-stone-900 opacity-25"></div>
-            <img src="main.jpg" alt="סבא וסבתא" class="absolute -bottom-16 w-36 h-36 rounded-full border-4 border-white shadow-lg object-cover z-10 bg-white" onerror="this.style.display='none'">
+        <!-- Header Section (Hero) -->
+        <div class="relative h-[22rem] md:h-[28rem] flex justify-center items-end pb-8 overflow-hidden bg-stone-900">
+            <div class="absolute inset-0 bg-cover bg-center opacity-50 animate-slow-zoom" style="background-image: url('bg.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent opacity-90"></div>
+            
+            <div class="relative z-10 -bottom-16 fade-in">
+                <img src="main.jpg" alt="סבא וסבתא" class="w-40 h-40 md:w-48 md:h-48 rounded-full border-[3px] border-[#cda85c] shadow-[0_10px_30px_rgba(0,0,0,0.6)] object-cover bg-white" onerror="this.style.display='none'">
+            </div>
         </div>
 
         <!-- Info Section -->
-        <div class="pt-24 px-8 text-center fade-in">
-            <h1 class="text-3xl font-bold text-stone-900 mb-1">יהודה ושושנה (סוזן) סבג ז"ל</h1>
-            <h2 class="text-lg text-amber-800 font-semibold mb-4">ז'אז'ו ובאבא יהודה</h2>
-            <p class="text-stone-600 font-medium mb-1">שושנה סבג ז"ל: 1936 – 2026</p>
-            <p class="text-stone-600 font-medium mb-4">יהודה סבג ז"ל: 1927 – 2004</p>
-            <p class="text-base leading-relaxed text-stone-700 italic border-y border-stone-200 py-4 my-4">
-                "אחרי שנים שבהן חיו יחד, נפרדו ונשאו את כאב הגעגוע – הם שוב יחד. המורשת של מסירות, עבודה, משפחה ומוזיקה תמשיך להתנגן בלבנו לעד."
+        <div class="pt-24 px-8 text-center fade-in delay-1">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-2">יהודה ושושנה סבג ז"ל</h1>
+            <h2 class="text-xl md:text-2xl text-amber-700 font-medium mb-6 font-serif-custom tracking-wide">ז'אז'ו ובאבא יהודה</h2>
+            
+            <div class="flex justify-center items-center space-x-6 space-x-reverse text-stone-500 font-medium text-sm md:text-base mb-6">
+                <span>שושנה ז"ל: 1936 – 2026</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-600/50"></span>
+                <span>יהודה ז"ל: 1927 – 2004</span>
+            </div>
+            
+            <p class="text-lg leading-relaxed text-stone-700 italic border-y border-stone-200 py-6 my-6 max-w-xl mx-auto">
+                "אחרי שנים שבהן חיו יחד, נפרדו ונשאו את כאב הגעגוע – הם שוב יחד.<br>המורשת של מסירות, עבודה, משפחה ומוזיקה תמשיך להתנגן בלבנו לעד."
             </p>
         </div>
 
-        <div class="px-8 py-4 space-y-16">
+        <div class="px-6 md:px-12 py-4 space-y-20">
             
-            <!-- Timeline / Biography - ז'אז'ו -->
-            <section>
-                <h2 class="text-2xl font-bold text-stone-800 mb-6 border-b-2 border-amber-700/40 pb-2">סיפור חייה של סוזן שושנה (ז'אז'ו) סבג ז"ל</h2>
-                <div class="relative border-r-2 border-stone-200 pr-6 space-y-8 text-right">
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">1936 | ילדות, שורשים ויתמות</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">נולדה במרקש לדוד ואסתר נחמני ז"ל. בהיותה בת 10 חודשים בלבד, נפטר אביה. אמה, אסתר, אלמנה צעירה, גידלה אותה ואת אחיותיה כלביאה בתנאים לא פשוטים. השם המיוחד "זאזו" ניתן לה על שם זמרת צרפתייה, וליווה את אישיותה הייחודית כל חייה.</p>
+            <!-- סיפור חייה - ז'אז'ו -->
+            <section class="fade-in delay-2">
+                <div class="text-center mb-10">
+                    <span class="text-amber-700 text-3xl mb-2 block">❦</span>
+                    <h2 class="text-3xl font-bold text-stone-800">סיפור חייה של סוזן שושנה ז"ל</h2>
+                </div>
+                
+                <div class="relative border-r-[3px] border-amber-700/20 pr-6 md:pr-10 space-y-10 text-right">
+                    
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">1936 | ילדות, שורשים ויתמות</h3>
+                        <p class="text-stone-600 leading-relaxed">נולדה במרקש לדוד ואסתר נחמני ז"ל. בהיותה בת 10 חודשים בלבד, נפטר אביה. אמה, אסתר, אלמנה צעירה, גידלה אותה ואת אחיותיה כלביאה בתנאים לא פשוטים. השם המיוחד "זאזו" ניתן לה על שם זמרת צרפתייה, וליווה את אישיותה הייחודית כל חייה.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">ילדות במלאח – אחריות ועבודה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">גדלה ברובע היהודי במרקש. לקראת גיל עשר נשלחה ללמוד תפירה אצל מי שלימים הייתה חמותה, ובמקביל החלה לעבוד במפעל השימורים Cartier כדי לסייע בפרנסת המשפחה. שם למדה והטמיעה את ערכי החריצות, ההסתפקות במועט והדאגה לאחר.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">ילדות במלאח – אחריות ועבודה</h3>
+                        <p class="text-stone-600 leading-relaxed">גדלה ברובע היהודי במרקש. לקראת גיל עשר נשלחה ללמוד תפירה אצל מי שלימים הייתה חמותה, ובמקביל החלה לעבוד במפעל השימורים Cartier כדי לסייע בפרנסת המשפחה. שם למדה והטמיעה את ערכי החריצות, ההסתפקות במועט והדאגה לאחר.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">1949 | המפגש, האהבה והעלייה הראשונה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בהלוויה של דודו של יהודה, נפגשו מבטיהם והחלה להירקם אהבתם. בשנת 1949, בתושייה רבה, השיגה זאזו את אישור אמה ועלתה לארץ יחד עם יהודה באונייה "ירושלים". הם נישאו בחיפה, אך בשל קשיי הקליטה נאלצו לחזור למרוקו.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">1949 | המפגש, האהבה והעלייה הראשונה</h3>
+                        <p class="text-stone-600 leading-relaxed">בהלוויה של דודו של יהודה, נפגשו מבטיהם והחלה להירקם אהבתם. בשנת 1949, בתושייה רבה, השיגה זאזו את אישור אמה ועלתה לארץ יחד עם יהודה באונייה "ירושלים". הם נישאו בחיפה, אך בשל קשיי הקליטה נאלצו לחזור למרוקו.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">1954 | העלייה השנייה – הפעם לתמיד</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">כשהרתה שוב, הציבה זאזו עובדה נחרצת: "את הילד הזה אני אלד בארץ ישראל". הם עלו שוב לישראל, תוך שהם מסייעים בהעלאתה של סבתו של יהודה (עישה) ודואגים לה במסירות. המשפחה קבעה את ביתה בירושלים.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">1954 | העלייה השנייה – הפעם לתמיד</h3>
+                        <p class="text-stone-600 leading-relaxed">כשהרתה שוב, הציבה זאזו עובדה נחרצת: "את הילד הזה אני אלד בארץ ישראל". הם עלו שוב לישראל, תוך שהם מסייעים בהעלאתה של סבתו של יהודה (עישה) ודואגים לה במסירות. המשפחה קבעה את ביתה בירושלים.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">הלב הפועם של הבית</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">למרות קשיי פוריות, בעקבות תפילות ונדרים נולדו חמישה ילדים (אורה, אבי, יעל, יהודית וויוון). ביתם ברחוב רשב"ג היה תמיד פתוח – מלא בבישוליה המופלאים, בשמחה, בשכנים ובאורחים שמיד הרגישו רצויים.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">הלב הפועם של הבית</h3>
+                        <p class="text-stone-600 leading-relaxed">למרות קשיי פוריות, בעקבות תפילות ונדרים נולדו חמישה ילדים (אורה, אבי, יעל, יהודית וויוון). ביתם ברחוב רשב"ג היה תמיד פתוח – מלא בבישוליה המופלאים, בשמחה, בשכנים ובאורחים שמיד הרגישו רצויים.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">2004 | מסירות עד רגעיו האחרונים</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">במשך כחמש שנים טיפלה זאזו בבעלה יהודה במסירות נפש עילאית בעת התמודדותו עם אלצהיימר, ודאגה לכבודו עד נשימתו האחרונה. לאחר פטירתו, נשאה את הגעגוע אליו בלבה במשך 22 שנים ארוכות, תוך שהיא משמשת כעמוד התווך לנכדיה.</p>
+                    
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">2004 | מסירות עד רגעיו האחרונים</h3>
+                        <p class="text-stone-600 leading-relaxed">במשך כחמש שנים טיפלה זאזו בבעלה יהודה במסירות נפש עילאית בעת התמודדותו עם אלצהיימר, ודאגה לכבודו עד נשימתו האחרונה. לאחר פטירתו, נשאה את הגעגוע אליו בלבה במשך 22 שנים ארוכות, תוך שהיא משמשת כעמוד התווך לנכדיה.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">2026 | פרידה בביתה, מוקפת באהבה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">כשהחלה לסבול מדמנציה, ביקשה שלא יאריכו את חייה מלאכותית ושלא יעבירו אותה מביתה. המשפחה כולה התגייסה, והיא מעולם לא נשארה לבד ולו ליום אחד. ביום חמישי, ט״ז באב תשפ״ו (30 ביולי 2026), לאחר בר מצווה משפחתית וכשהיא עטופה בילדיה, השיבה את נשמתה הטהורה לבורא, בדיוק כפי שביקשה.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-amber-700 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">2026 | פרידה בביתה, מוקפת באהבה</h3>
+                        <p class="text-stone-600 leading-relaxed">כשהחלה לסבול מדמנציה, ביקשה שלא יאריכו את חייה מלאכותית ושלא יעבירו אותה מביתה. המשפחה כולה התגייסה, והיא מעולם לא נשארה לבד ולו ליום אחד. ביום חמישי, ט״ז באב תשפ״ו (30 ביולי 2026), לאחר בר מצווה משפחתית וכשהיא עטופה בילדיה, השיבה את נשמתה הטהורה לבורא, בדיוק כפי שביקשה.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Timeline / Biography - באבא יהודה -->
+            <!-- סיפור חייו - באבא יהודה -->
             <section>
-                <h2 class="text-2xl font-bold text-stone-800 mb-6 border-b-2 border-amber-700/40 pb-2">סיפור חייו של יהודה סבג ז"ל</h2>
-                <div class="relative border-r-2 border-stone-200 pr-6 space-y-8 text-right">
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">1927 | ילדות ושורשים בסאפי ומרקש</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">יהודה נולד בעיר סאפי, בן בכור לשמעון וסעדה ז״ל, למשפחה שורשית של רבנים. במרקש החלה להיבנות אישיותו – שילוב של חריצות, אהבת אדם ואהבה למוזיקה. למד בבית הספר "אליאנס" ובערבים בישיבה.</p>
+                <div class="text-center mb-10">
+                    <span class="text-stone-500 text-3xl mb-2 block">❦</span>
+                    <h2 class="text-3xl font-bold text-stone-800">סיפור חייו של יהודה סבג ז"ל</h2>
+                </div>
+                
+                <div class="relative border-r-[3px] border-stone-300 pr-6 md:pr-10 space-y-10 text-right">
+                    
+                    <div class="relative timeline-card p-6 rounded-2xl border-stone-200">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-stone-500 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">1927 | ילדות ושורשים בסאפי ומרקש</h3>
+                        <p class="text-stone-600 leading-relaxed">יהודה נולד בעיר סאפי, בן בכור לשמעון וסעדה ז״ל, למשפחה שורשית של רבנים. במרקש החלה להיבנות אישיותו – שילוב של חריצות, אהבת אדם ואהבה למוזיקה. למד בבית הספר "אליאנס" ובערבים בישיבה.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">"קנקן תה בכל יום"</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בגיל 11, בעודו לומד ספרות אצל דודו, הוקסם מהנגנים הסמוכים. האמרגן דוד זריהן שאל אם ברצונו ללמוד נגינה בעוד ואמר: "התשלום שלך יהיה קנקן תה בכל יום, ואני אלמד אותך". משם צמח להיות נגן אנדלוסי מבוקש ומוערך ברחבי מרוקו.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl border-stone-200">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-stone-500 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">"קנקן תה בכל יום"</h3>
+                        <p class="text-stone-600 leading-relaxed">בגיל 11, בעודו לומד ספרות אצל דודו, הוקסם מהנגנים הסמוכים. האמרגן דוד זריהן שאל אם ברצונו ללמוד נגינה בעוד ואמר: "התשלום שלך יהיה קנקן תה בכל יום, ואני אלמד אותך". משם צמח להיות נגן אנדלוסי מבוקש ומוערך ברחבי מרוקו.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">ספרות, מוזיקה והמשכיות</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בארץ פתח את "מספרת הדרום" בדרך בית לחם (ומאוחר יותר ברשב"ג), ופרנס את משפחתו ביום בעודו מנגן ושר בשמחות בלילה. ב-1972, בנו בן ה-12 הפתיע אותו כשסיפר לקוח, ומאז עבדו יחד עד סגירת המספרה ב-1978.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl border-stone-200">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-stone-500 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">ספרות, מוזיקה והמשכיות</h3>
+                        <p class="text-stone-600 leading-relaxed">בארץ פתח את "מספרת הדרום" בדרך בית לחם (ומאוחר יותר ברשב"ג), ופרנס את משפחתו ביום בעודו מנגן ושר בשמחות בלילה. ב-1972, בנו בן ה-12 הפתיע אותו כשסיפר לקוח, ומאז עבדו יחד עד סגירת המספרה ב-1978.</p>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
-                        <h3 class="font-bold text-lg text-stone-900">2004 | פרישה ופטירתו</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">יהודה ידע לפרוש מהבמה בזמן כדי להשאיר זיכרון של אמן דגול. לאחר התמודדות עם אלצהיימר, החזיר את נשמתו לבורא ביום י״ג באלול תשס״ד. מי ששמע אותו מנגן – לעולם לא שכח.</p>
+
+                    <div class="relative timeline-card p-6 rounded-2xl border-stone-200">
+                        <div class="absolute -right-[43px] md:-right-[59px] top-6 bg-stone-500 w-5 h-5 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="font-bold text-xl text-stone-900 mb-2 font-serif-custom">2004 | פרישה ופטירתו</h3>
+                        <p class="text-stone-600 leading-relaxed">יהודה ידע לפרוש מהבמה בזמן כדי להשאיר זיכרון של אמן דגול. לאחר התמודדות עם אלצהיימר, החזיר את נשמתו לבורא ביום י״ג באלול תשס״ד. מי ששמע אותו מנגן – לעולם לא שכח.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- עץ המשפחה (נקי ויוקרתי) -->
+            <section>
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">אילן יוחסין משפחתי</h2>
+                    <p class="text-stone-500 mt-2">הדורות הבאים של משפחת סבג</p>
+                </div>
+                
+                <div class="flex flex-col items-center mb-8">
+                    <div class="bg-[#292524] text-[#f4f1eb] py-4 px-8 rounded-full shadow-lg border border-[#44403c] text-center relative z-10">
+                        <span class="text-xl font-bold font-serif-custom tracking-wide">יהודה ושושנה סבג</span>
+                    </div>
+                    <div class="w-px h-10 bg-stone-300"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                    
+                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
+                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">אורה וסמי יצחקי</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">איתי</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אודליה</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אוהד</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">איתמר</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
+                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">אבי ויהודית סבג</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">שנית</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אורטל</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">יהודה</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">חננאל</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
+                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">יעל ודוד חן</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אודי</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">שירן</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אדווה</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אריאל</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
+                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">יהודית ואילן נגר</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">לילך</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">דורין</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אדיר</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">נאור</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">קוראל</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors md:col-span-2 lg:col-span-1 md:w-3/4 mx-auto">
+                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">ויוון ושלומי בן חיון</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">יותם</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אמיתי</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אביתר</span>
+                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אליה</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- מקום מנוחתו -->
-            <section class="bg-stone-100 p-5 rounded-xl border border-stone-200 text-center shadow-sm">
-                <h3 class="font-bold text-stone-800 text-lg mb-2">📍 מנוחתם המשותפת</h3>
-                <p class="text-stone-700 text-sm leading-relaxed">
+            <section class="bg-[#f5f5f4] p-8 rounded-2xl border border-[#e7e5e4] text-center shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-transparent via-amber-700 to-transparent opacity-30"></div>
+                <h3 class="font-bold text-stone-800 text-xl mb-3 font-serif-custom">מנוחתם המשותפת</h3>
+                <p class="text-stone-700 leading-relaxed text-lg">
                     שושנה ויהודה סבג ז״ל נטמנו יחדיו בבית העלמין גבעת שאול, ירושלים.<br>
-                    <strong>כביש 9 | גוש מ״ב | חלקה י׳</strong><br>
-                    <span class="block mt-2 text-stone-500">"אשת חיל מי ימצא, ורחוק מפנינים מכרה."<br>ת.נ.צ.ב.ה</span>
+                    <strong class="text-stone-900">כביש 9 | גוש מ״ב | חלקה י׳</strong><br>
+                    <span class="block mt-4 text-stone-500 italic text-sm">"אשת חיל מי ימצא, ורחוק מפנינים מכרה."<br>ת.נ.צ.ב.ה</span>
                 </p>
             </section>
 
             <!-- Media Gallery -->
             <section>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 border-b border-stone-200 pb-4 gap-4">
-                    <h2 class="text-2xl font-bold text-stone-800">גלריית זיכרונות משפחתית</h2>
-                    <!-- אזור העלאת התמונות -->
-                    <div class="bg-stone-100 p-2 rounded-lg border border-stone-200 flex items-center w-full sm:w-auto shadow-sm">
-                        <input type="file" id="photoInput" accept="image/*" class="w-full text-xs text-stone-600 file:mr-0 file:ml-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:font-semibold file:bg-white file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
-                        <button id="uploadPhotoBtn" class="bg-stone-700 text-white px-4 py-1.5 rounded-md hover:bg-stone-600 transition font-semibold text-xs whitespace-nowrap">העלה תמונה</button>
-                    </div>
-                </div>
-                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden">מעלה תמונה, אנא המתן...</p>
-
-                <!-- הגלריה המאוחדת -->
-                <div id="mainGalleryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <img src="pic1.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic2.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic3.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic4.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic5.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic6.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic7.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic8.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic9.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic10.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic11.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic12.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic13.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic14.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic15.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic16.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <img src="pic17.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
-                    <!-- תמונות מהענן יתווספו לכאן אוטומטית -->
-                </div>
-            </section>
-
-            <!-- עץ המשפחה (גרסה מעוצבת) -->
-            <section class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-inner">
-                <h2 class="text-3xl font-bold text-stone-800 mb-8 border-b-2 border-amber-700/30 pb-3 text-center">עץ המשפחה</h2>
-                
-                <!-- סבא וסבתא (השורש) -->
-                <div class="flex flex-col items-center mb-8">
-                    <div class="bg-gradient-to-br from-amber-700 to-stone-800 text-white p-5 rounded-2xl shadow-xl border-4 border-white text-center w-full max-w-sm relative z-10">
-                        <span class="text-3xl block mb-2 drop-shadow-md">🌿</span>
-                        <span class="text-xl font-bold tracking-wide">יהודה ושושנה (ז'אז'ו) סבג ז"ל</span>
-                    </div>
-                    <!-- קו מחבר -->
-                    <div class="w-1.5 h-12 bg-amber-700/30 rounded-full -mt-2"></div>
-                </div>
-
-                <!-- הילדים והנכדים (קלפים) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 border-b border-stone-200 pb-4 gap-4">
+                    <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">גלריית זיכרונות</h2>
                     
-                    <!-- משפחת יצחקי -->
-                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
-                            <h3 class="font-bold text-lg text-stone-800">אורה וסמי יצחקי</h3>
-                        </div>
-                        <div class="p-5 flex flex-wrap justify-center gap-2">
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">איתי</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אודליה</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אוהד</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">איתמר</span>
-                        </div>
+                    <div class="bg-white p-2 rounded-full border border-stone-200 flex items-center w-full sm:w-auto shadow-sm">
+                        <input type="file" id="photoInput" accept="image/*" class="w-full text-xs text-stone-600 file:mr-0 file:ml-2 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-medium file:bg-stone-100 file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
+                        <button id="uploadPhotoBtn" class="bg-stone-800 text-white px-5 py-2 rounded-full hover:bg-amber-800 transition font-medium text-xs whitespace-nowrap">העלה תמונה</button>
                     </div>
+                </div>
+                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden text-center">מעלה תמונה, אנא המתן...</p>
 
-                    <!-- משפחת סבג -->
-                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
-                            <h3 class="font-bold text-lg text-stone-800">אבי ויהודית סבג</h3>
-                        </div>
-                        <div class="p-5 flex flex-wrap justify-center gap-2">
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">שנית</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אורטל</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">יהודה</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">חננאל</span>
-                        </div>
-                    </div>
-
-                    <!-- משפחת חן -->
-                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
-                            <h3 class="font-bold text-lg text-stone-800">יעל ודוד חן</h3>
-                        </div>
-                        <div class="p-5 flex flex-wrap justify-center gap-2">
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אודי</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">שירן</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אדווה</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אריאל</span>
-                        </div>
-                    </div>
-
-                    <!-- משפחת נגר -->
-                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
-                            <h3 class="font-bold text-lg text-stone-800">יהודית ואילן נגר</h3>
-                        </div>
-                        <div class="p-5 flex flex-wrap justify-center gap-2">
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">לילך</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">דורין</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אדיר</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">נאור</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">קוראל</span>
-                        </div>
-                    </div>
-
-                    <!-- משפחת בן חיון -->
-                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden md:col-span-2 lg:col-span-1 md:w-1/2 md:mx-auto">
-                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
-                            <h3 class="font-bold text-lg text-stone-800">ויוון ושלומי בן חיון</h3>
-                        </div>
-                        <div class="p-5 flex flex-wrap justify-center gap-2">
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">יותם</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אמיתי</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אביתר</span>
-                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אליה</span>
-                        </div>
-                    </div>
-
+                <div id="mainGalleryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                    <img src="pic1.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic2.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic3.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic4.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic5.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic6.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic7.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic8.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic9.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic10.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic11.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic12.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic13.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic14.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic15.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic16.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                    <img src="pic17.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
                 </div>
             </section>
 
             <!-- Digital Candle -->
-            <section class="text-center bg-stone-50 py-8 rounded-xl border border-stone-100 shadow-inner">
-                <h2 class="text-xl font-bold text-stone-800 mb-4">הדלקת נר זיכרון</h2>
-                <div class="max-w-xs mx-auto space-y-3" id="candleFormDiv">
-                    <input type="text" id="candleNameInput" placeholder="השם שלך" class="w-full px-4 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-700 text-center">
-                    <button id="candleBtn" class="w-full bg-stone-800 text-white px-8 py-3 rounded-full shadow-lg hover:bg-stone-700 transition-colors duration-300 flex items-center justify-center space-x-2 space-x-reverse font-semibold">
-                        <span class="text-xl">🕯️</span>
+            <section class="text-center bg-[#292524] text-white py-12 rounded-3xl shadow-xl relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-amber-700/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-700/20 rounded-full blur-3xl"></div>
+                
+                <h2 class="text-2xl font-bold mb-6 font-serif-custom relative z-10">הדלקת נר זיכרון</h2>
+                <div class="max-w-sm mx-auto space-y-4 px-4 relative z-10" id="candleFormDiv">
+                    <input type="text" id="candleNameInput" placeholder="הקלידו את שמכם..." class="w-full px-5 py-3 bg-white/10 border border-white/20 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500 text-center text-white placeholder-stone-400 backdrop-blur-sm">
+                    <button id="candleBtn" class="w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white px-8 py-3.5 rounded-full shadow-[0_0_15px_rgba(180,83,9,0.5)] hover:shadow-[0_0_25px_rgba(180,83,9,0.8)] transition-all duration-300 flex items-center justify-center space-x-2 space-x-reverse font-medium text-lg">
+                        <span>🕯️</span>
                         <span>הדלק נר לזכרם</span>
                     </button>
                 </div>
                 
-                <p id="candleCountText" class="text-sm font-semibold text-stone-600 mt-6">טוען נתונים...</p>
+                <p id="candleCountText" class="text-sm font-medium text-stone-300 mt-8 relative z-10">טוען נתונים...</p>
                 
-                <!-- רשימת מדליקי הנרות -->
-                <div id="candleLightersList" class="mt-4 max-h-40 overflow-y-auto custom-scrollbar text-sm text-stone-600 space-y-2 border-t border-stone-200 pt-4 w-3/4 mx-auto"></div>
+                <div id="candleLightersList" class="mt-6 max-h-32 overflow-y-auto custom-scrollbar text-sm text-stone-300 space-y-2 pt-4 w-5/6 mx-auto relative z-10"></div>
             </section>
 
             <!-- Guestbook -->
             <section>
-                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">ספר מבקרים וזיכרונות</h2>
+                <h2 class="text-3xl font-bold text-stone-800 mb-8 font-serif-custom text-center">ספר מבקרים וזיכרונות</h2>
                 
-                <form id="messageForm" class="mb-8 space-y-4">
-                    <input type="text" id="senderName" placeholder="השם שלך" required class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white">
-                    <textarea id="messageText" placeholder="כתוב זיכרון משותף, הקדשה או מילה טובה..." required rows="3" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white"></textarea>
-                    <button type="submit" class="w-full bg-stone-700 text-white px-4 py-2 rounded-lg hover:bg-stone-600 transition duration-300 font-semibold shadow-sm">שלח הקדשה</button>
-                </form>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 mb-10">
+                    <form id="messageForm" class="space-y-6">
+                        <div>
+                            <input type="text" id="senderName" placeholder="השם שלך" required class="w-full input-elegant text-stone-800 text-lg">
+                        </div>
+                        <div>
+                            <textarea id="messageText" placeholder="שתפו זיכרון משותף, הקדשה או מילה טובה..." required rows="2" class="w-full input-elegant text-stone-800 text-lg resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="bg-stone-900 text-white px-8 py-3 rounded-full hover:bg-amber-800 transition duration-300 font-medium shadow-md">שלח הקדשה</button>
+                    </form>
+                </div>
 
-                <div id="messagesList" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2"></div>
+                <div id="messagesList" class="space-y-5 max-h-96 overflow-y-auto custom-scrollbar pr-3"></div>
             </section>
 
         </div>
+    </div>
+
+    <!-- מודל (חלון קופץ) להגדלת תמונות -->
+    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300" onclick="closeModal()">
+        <button class="absolute top-6 right-6 text-white text-4xl font-bold hover:text-stone-300 transition-colors z-[101]">&times;</button>
+        <img id="modalImage" class="max-w-[95vw] max-h-[90vh] object-contain rounded-lg shadow-2xl" src="">
     </div>
 
     <!-- Firebase Libraries -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics-compat.js"></script>
 
     <script>
         const firebaseConfig = {
@@ -285,49 +360,67 @@
             authDomain: "mamo2026-29b4a.firebaseapp.com",
             databaseURL: "https://mamo2026-29b4a-default-rtdb.firebaseio.com",
             projectId: "mamo2026-29b4a",
-            storageBucket: "mamo2026-29b4a.firebasestorage.app",
-            messagingSenderId: "68494818133",
-            appId: "1:68494818133:web:af01710f1f1264d2174ddc",
-            measurementId: "G-G2BTS6YKMH"
+            storageBucket: "mamo2026-29b4a.firebasestorage.app"
         };
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         const storage = firebase.storage();
-        const analytics = firebase.analytics();
 
-        // -----------------------------------------
+        // Modal Logic (פתיחת תמונות)
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        window.openModal = function(src) {
+            modalImage.src = src;
+            imageModal.classList.remove('hidden');
+            imageModal.classList.add('flex');
+            // השהייה קלה מאפשרת לאנימציית העמעום לעבוד
+            setTimeout(() => {
+                imageModal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        window.closeModal = function() {
+            imageModal.classList.add('opacity-0');
+            setTimeout(() => {
+                imageModal.classList.add('hidden');
+                imageModal.classList.remove('flex');
+                modalImage.src = '';
+            }, 300);
+        }
+
         // 1. Candle Logic
-        // -----------------------------------------
         const candlesListRef = db.ref('candlesHistory');
         const totalCandlesRef = db.ref('candleCount');
         const candleBtn = document.getElementById('candleBtn');
         const candleNameInput = document.getElementById('candleNameInput');
         const candleFormDiv = document.getElementById('candleFormDiv');
-        let hasLitCandle = localStorage.getItem('candleLit_v2') === 'true';
+        let hasLitCandle = localStorage.getItem('candleLit_v3') === 'true';
 
         if (hasLitCandle) {
-            candleFormDiv.innerHTML = "<div class='bg-amber-700 text-white px-8 py-3 rounded-full font-semibold cursor-default'><span class='text-xl'>🕯️</span> הנר שלך דולק</div>";
+            candleFormDiv.innerHTML = "<div class='bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full font-medium cursor-default backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.1)]'><span class='text-xl'>🕯️</span> הנר שלך דולק</div>";
         }
 
-        candleBtn.addEventListener('click', () => {
-            if (hasLitCandle) return;
-            const name = candleNameInput.value.trim();
-            if (!name) {
-                alert("אנא הזן את שמך כדי להדליק נר.");
-                return;
-            }
+        if(candleBtn) {
+            candleBtn.addEventListener('click', () => {
+                if (hasLitCandle) return;
+                const name = candleNameInput.value.trim();
+                if (!name) {
+                    alert("אנא הזן את שמך כדי להדליק נר.");
+                    return;
+                }
+                const now = new Date();
+                const timeString = now.toLocaleDateString('he-IL') + " - " + now.toLocaleTimeString('he-IL', {hour: '2-digit', minute:'2-digit'});
 
-            const now = new Date();
-            const timeString = now.toLocaleDateString('he-IL') + " - " + now.toLocaleTimeString('he-IL', {hour: '2-digit', minute:'2-digit'});
-
-            candlesListRef.push({ name: name, time: timeString }).then(() => {
-                totalCandlesRef.set(firebase.database.ServerValue.increment(1));
-                localStorage.setItem('candleLit_v2', 'true');
-                hasLitCandle = true;
-                candleFormDiv.innerHTML = "<div class='bg-amber-700 text-white px-8 py-3 rounded-full font-semibold cursor-default shadow-lg'><span class='text-xl'>🕯️</span> תודה, "+name+", הנר שלך דולק</div>";
+                candlesListRef.push({ name: name, time: timeString }).then(() => {
+                    totalCandlesRef.set(firebase.database.ServerValue.increment(1));
+                    localStorage.setItem('candleLit_v3', 'true');
+                    hasLitCandle = true;
+                    candleFormDiv.innerHTML = "<div class='bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full font-medium cursor-default backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.1)]'><span class='text-xl'>🕯️</span> תודה, "+name+", הנר שלך דולק</div>";
+                });
             });
-        });
+        }
 
         totalCandlesRef.on('value', (snapshot) => {
             const count = snapshot.val() || 0;
@@ -341,14 +434,12 @@
             if (data) {
                 const arr = Object.values(data).reverse();
                 arr.forEach(item => {
-                    listDiv.innerHTML += `<div class="bg-white py-1 px-3 rounded-full shadow-sm inline-block mx-1 my-1 border border-stone-100">🕯️ ${item.name} <span class="text-xs text-stone-400">(${item.time})</span></div>`;
+                    listDiv.innerHTML += `<div class="bg-white/5 border border-white/10 py-1.5 px-4 rounded-full shadow-sm inline-block mx-1 my-1 backdrop-blur-sm text-stone-200">🕯️ ${item.name} <span class="text-xs text-stone-400 ml-1">(${item.time})</span></div>`;
                 });
             }
         });
 
-        // -----------------------------------------
-        // 2. Photo Upload (Merged Gallery)
-        // -----------------------------------------
+        // 2. Photo Upload
         const dynamicGalleryRef = db.ref('visitorGallery');
         const uploadBtn = document.getElementById('uploadPhotoBtn');
         const photoInput = document.getElementById('photoInput');
@@ -357,13 +448,13 @@
         uploadBtn.addEventListener('click', () => {
             const file = photoInput.files[0];
             if (!file) {
-                alert("אנא בחר תמונה להעלאה באמצעות הכפתור האפור קודם.");
+                alert("אנא בחר תמונה להעלאה קודם.");
                 return;
             }
 
             uploadStatus.classList.remove('hidden');
             uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
-            uploadStatus.className = "text-sm font-semibold text-amber-700 mb-4 block";
+            uploadStatus.className = "text-sm font-medium text-amber-700 mb-4 text-center block";
 
             const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + file.name);
             
@@ -373,22 +464,19 @@
                 dynamicGalleryRef.push({ url: downloadURL, date: new Date().toLocaleDateString('he-IL') });
                 
                 uploadStatus.innerText = "התמונה הועלתה בהצלחה לגלריה!";
-                uploadStatus.className = "text-sm font-semibold text-green-600 mb-4 block";
+                uploadStatus.className = "text-sm font-medium text-green-600 mb-4 text-center block";
                 photoInput.value = ''; 
                 
                 setTimeout(() => { uploadStatus.classList.add('hidden'); }, 4000);
             }).catch((error) => {
-                console.error("Upload error: ", error);
-                uploadStatus.innerText = "שגיאה בהעלאה. האם עדכנת את הרשאות ה-Storage ב-Firebase?";
-                uploadStatus.className = "text-sm font-semibold text-red-600 mb-4 block";
+                console.error(error);
+                uploadStatus.innerText = "שגיאה בהעלאה.";
+                uploadStatus.className = "text-sm font-medium text-red-600 mb-4 text-center block";
             });
         });
 
-        // משלב את התמונות מהענן ישירות לתוך הגלריה הראשית
         dynamicGalleryRef.on('value', (snapshot) => {
-            // מוחק תמונות קודמות מהענן כדי לא לשכפל בזמן רענון
             document.querySelectorAll('.dynamic-photo').forEach(el => el.remove());
-            
             const data = snapshot.val();
             if (data) {
                 const photos = Object.values(data);
@@ -396,19 +484,18 @@
                 
                 photos.forEach(photo => {
                     const wrapper = document.createElement('div');
-                    wrapper.className = "relative group fade-in dynamic-photo";
+                    wrapper.className = "relative group fade-in dynamic-photo overflow-hidden rounded-xl cursor-pointer";
+                    // הוספנו את פונקציית openModal גם לתמונות שמגיעות מהענן
                     wrapper.innerHTML = `
-                        <img src="${photo.url}" class="rounded-lg shadow-sm object-cover h-32 w-full bg-stone-100 hover:shadow-md transition-shadow duration-300">
-                        <div class="absolute bottom-1 right-2 text-xs text-white bg-black/50 px-2 rounded-full">${photo.date}</div>
+                        <img src="${photo.url}" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100">
+                        <div class="absolute bottom-2 right-2 text-[10px] text-white bg-black/60 px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none">${photo.date}</div>
                     `;
                     mainGallery.appendChild(wrapper);
                 });
             }
         });
 
-        // -----------------------------------------
-        // 3. Guestbook Logic
-        // -----------------------------------------
+        // 3. Guestbook
         const messagesRef = db.ref('messages');
         const messageForm = document.getElementById('messageForm');
         const messagesList = document.getElementById('messagesList');
@@ -421,7 +508,6 @@
 
             messagesRef.push({ name, text, date }).then(() => {
                 messageForm.reset();
-                alert("תודתנו נתונה לך. ההקדשה נשמרה.");
             });
         });
 
@@ -432,13 +518,13 @@
                 const messagesArray = Object.values(data).reverse();
                 messagesArray.forEach(msg => {
                     const msgDiv = document.createElement('div');
-                    msgDiv.className = "bg-white p-4 rounded-lg border border-stone-200 shadow-sm";
+                    msgDiv.className = "bg-white p-5 rounded-2xl border border-stone-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)]";
                     msgDiv.innerHTML = `
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-stone-800">${msg.name}</span>
-                            <span class="text-xs text-stone-400">${msg.date}</span>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-stone-900">${msg.name}</span>
+                            <span class="text-xs text-stone-400 bg-stone-50 px-2 py-1 rounded-md">${msg.date}</span>
                         </div>
-                        <p class="text-stone-600 text-sm whitespace-pre-wrap">${msg.text}</p>
+                        <p class="text-stone-600 text-sm md:text-base whitespace-pre-wrap leading-relaxed">${msg.text}</p>
                     `;
                     messagesList.appendChild(msgDiv);
                 });
