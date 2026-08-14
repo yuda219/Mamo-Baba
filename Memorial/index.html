@@ -194,30 +194,32 @@
                         <p class="text-stone-500 text-sm mt-1">לחצו על תמונה להגדלה | לחצו על "תצוגת כל התמונות ברשת" לצפייה בכל הגלריה</p>
                     </div>
                     
-                    <!-- אזור העלאת תמונה -->
+                    <!-- אזור העלאת תמונות (תמיכה בבחירה מרובה) -->
                     <div class="bg-white p-2.5 rounded-2xl border border-stone-200/90 flex flex-col sm:flex-row items-center w-full md:w-auto shadow-xs gap-2">
                         <label for="photoInput" class="cursor-pointer bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium flex items-center gap-2 transition border border-stone-200/60 w-full sm:w-auto justify-center">
                             <span class="text-base">📸</span>
-                            <span id="fileInputLabel">בחר תמונה להעלאה</span>
-                            <input type="file" id="photoInput" accept="image/*" class="hidden">
+                            <span id="fileInputLabel">בחר תמונות להעלאה</span>
+                            <input type="file" id="photoInput" accept="image/*" multiple class="hidden">
                         </label>
-                        <button id="uploadPhotoBtn" class="bg-stone-900 hover:bg-amber-800 text-white px-5 py-2 rounded-xl transition font-medium text-xs whitespace-nowrap w-full sm:w-auto shadow-xs flex items-center justify-center gap-1.5">
+                        <button id="uploadPhotoBtn" class="bg-stone-900 hover:bg-amber-800 text-white px-5 py-2 rounded-xl transition font-medium text-xs whitespace-nowrap w-full sm:w-auto shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
                             <span>⬆️</span>
                             <span>העלה לגלריה</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- תצוגה מקדימה לתמונה לפני העלאה -->
-                <div id="uploadPreviewDiv" class="hidden mb-5 p-3.5 bg-amber-50/90 border border-amber-200 rounded-2xl flex items-center justify-between shadow-xs">
-                    <div class="flex items-center gap-3">
-                        <img id="uploadPreviewImg" src="" class="w-12 h-12 object-cover rounded-xl border border-amber-300 shadow-xs">
-                        <div>
-                            <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider block">תצוגה מקדימה להעלאה</span>
-                            <span id="uploadPreviewName" class="text-xs font-medium text-stone-800 truncate max-w-[220px] block"></span>
+                <!-- תצוגה מקדימה מרובה לתמונות לפני העלאה -->
+                <div id="uploadPreviewDiv" class="hidden mb-5 p-4 bg-amber-50/90 border border-amber-200 rounded-2xl shadow-xs">
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-amber-200/80">
+                        <div class="flex items-center gap-2">
+                            <span class="text-amber-800 text-xs font-bold uppercase tracking-wider block">תצוגה מקדימה להעלאה:</span>
+                            <span id="uploadPreviewBadge" class="bg-amber-800 text-amber-100 text-[11px] font-bold px-2.5 py-0.5 rounded-full">0 תמונות</span>
                         </div>
+                        <button id="cancelUploadPreview" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1.5 rounded-lg transition cursor-pointer">&times; ביטול הכל</button>
                     </div>
-                    <button id="cancelUploadPreview" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1.5 rounded-lg transition">&times; ביטול</button>
+                    <div id="uploadPreviewGrid" class="flex flex-wrap gap-2.5 max-h-36 overflow-y-auto custom-scrollbar p-1">
+                        <!-- תמונות מקדימות נרנדרות ב-JavaScript -->
+                    </div>
                 </div>
                 
                 <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden text-center"></p>

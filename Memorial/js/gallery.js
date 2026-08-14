@@ -1,4 +1,4 @@
-// מודול גלריית זיכרונות, קרוסלת Swiper, חלון רשת מלאה, העלאת תמונות ואישור מנהל
+// מודול גלריית זיכרונות, קרוסלת Swiper, חלון רשת מלאה, העלאת תמונות מרובות ואישור מנהל
 
 // תמונות ארכיון קבועות
 const staticPhotos = [
@@ -175,26 +175,46 @@ window.closeModal = function() {
     }, 300);
 };
 
-// לוגיקת העלאת תמונות וסנכרון בזמן אמת מול Firebase
+// לוגיקת העלאת תמונות מרובות וסנכרון בזמן אמת מול Firebase
 const photoInput = document.getElementById('photoInput');
 const fileInputLabel = document.getElementById('fileInputLabel');
 const uploadPreviewDiv = document.getElementById('uploadPreviewDiv');
-const uploadPreviewImg = document.getElementById('uploadPreviewImg');
-const uploadPreviewName = document.getElementById('uploadPreviewName');
+const uploadPreviewGrid = document.getElementById('uploadPreviewGrid');
+const uploadPreviewBadge = document.getElementById('uploadPreviewBadge');
 const cancelUploadPreview = document.getElementById('cancelUploadPreview');
 
 if (photoInput) {
     photoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            if (fileInputLabel) fileInputLabel.innerText = file.name;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                if (uploadPreviewImg) uploadPreviewImg.src = event.target.result;
-                if (uploadPreviewName) uploadPreviewName.innerText = file.name;
-                if (uploadPreviewDiv) uploadPreviewDiv.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
+        const files = Array.from(e.target.files);
+        if (files && files.length > 0) {
+            if (fileInputLabel) {
+                fileInputLabel.innerText = files.length === 1 
+                    ? files[0].name 
+                    : `נבחרו ${files.length} תמונות להעלאה`;
+            }
+            if (uploadPreviewBadge) {
+                uploadPreviewBadge.innerText = `${files.length} תמונות`;
+            }
+
+            if (uploadPreviewGrid) uploadPreviewGrid.innerHTML = '';
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    if (uploadPreviewGrid) {
+                        const thumb = document.createElement('div');
+                        thumb.className = "relative group w-14 h-14 rounded-xl overflow-hidden border border-amber-300 shadow-2xs bg-stone-100 flex-shrink-0";
+                        thumb.innerHTML = `
+                            <img src="${event.target.result}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 text-white text-[9px] font-bold flex items-center justify-center opacity-0 group-hover:opacity-100 transition">#${index + 1}</div>
+                        `;
+                        uploadPreviewGrid.appendChild(thumb);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+
+            if (uploadPreviewDiv) uploadPreviewDiv.classList.remove('hidden');
         }
     });
 }
@@ -202,7 +222,8 @@ if (photoInput) {
 if (cancelUploadPreview) {
     cancelUploadPreview.addEventListener('click', () => {
         if (photoInput) photoInput.value = '';
-        if (fileInputLabel) fileInputLabel.innerText = 'בחר תמונה להעלאה';
+        if (fileInputLabel) fileInputLabel.innerText = 'בחר תמונות להעלאה';
+        if (uploadPreviewGrid) uploadPreviewGrid.innerHTML = '';
         if (uploadPreviewDiv) uploadPreviewDiv.classList.add('hidden');
     });
 }
@@ -212,50 +233,66 @@ const uploadBtn = document.getElementById('uploadPhotoBtn');
 const uploadStatus = document.getElementById('uploadStatus');
 
 if (uploadBtn) {
-    uploadBtn.addEventListener('click', () => {
-        const file = photoInput ? photoInput.files[0] : null;
-        if (!file) {
-            alert("אנא בחר תמונה להעלאה קודם.");
+    uploadBtn.addEventListener('click', async () => {
+        const files = photoInput && photoInput.files ? Array.from(photoInput.files) : [];
+        if (files.length === 0) {
+            alert("אנא בחר לפחות תמונה אחת להעלאה.");
             return;
         }
 
         if (uploadStatus) {
             uploadStatus.classList.remove('hidden');
-            uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
-            uploadStatus.className = "text-sm font-medium text-amber-700 mb-4 text-center block animate-pulse";
+            uploadStatus.className = "text-xs font-bold text-amber-800 bg-amber-100/90 p-3 rounded-xl border border-amber-300 mb-4 text-center block animate-pulse";
+            uploadStatus.innerText = `מעלה ${files.length} תמונות לגלריה, אנא המתן... (0/${files.length})`;
         }
 
-        const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + file.name);
-        
-        storageRef.put(file).then((snapshot) => {
-            return snapshot.ref.getDownloadURL();
-        }).then((downloadURL) => {
-            // שמירת תמונה חדשה בסטטוס pending לאישור מנהל
-            dynamicGalleryRef.push({ 
-                url: downloadURL, 
-                date: new Date().toLocaleDateString('he-IL'),
-                status: 'pending',
-                timestamp: Date.now()
-            });
-            
+        let successCount = 0;
+        let failCount = 0;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
             if (uploadStatus) {
-                uploadStatus.innerText = "✨ התמונה הועברה בהצלחה לאישור מנהל המערכת! היא תופיע בגלריה לאחר אישורה בפאנל המנהל.";
+                uploadStatus.innerText = `מעלה תמונה ${i + 1} מתוך ${files.length}... (${file.name})`;
+            }
+
+            try {
+                const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + i + '_' + file.name);
+                const snapshot = await storageRef.put(file);
+                const downloadURL = await snapshot.ref.getDownloadURL();
+
+                await dynamicGalleryRef.push({
+                    url: downloadURL,
+                    date: new Date().toLocaleDateString('he-IL'),
+                    status: 'pending',
+                    timestamp: Date.now()
+                });
+
+                successCount++;
+            } catch (err) {
+                console.error("Upload error for file " + file.name, err);
+                failCount++;
+            }
+        }
+
+        if (uploadStatus) {
+            if (successCount > 0) {
+                const photoWord = successCount === 1 ? "התמונה הועברה" : `${successCount} התמונות הועברו`;
+                uploadStatus.innerText = `✨ ${photoWord} בהצלחה לאישור מנהל המערכת! הן יופיעו בגלריה לאחר אישורן בפאנל המנהל.`;
                 uploadStatus.className = "text-xs font-bold text-green-800 bg-green-50 p-3 rounded-xl border border-green-300 mb-4 text-center block shadow-2xs leading-relaxed";
+            } else {
+                uploadStatus.innerText = "שגיאה בהעלאת התמונות. אנא נסה שוב.";
+                uploadStatus.className = "text-xs font-bold text-red-700 bg-red-50 p-3 rounded-xl border border-red-200 mb-4 text-center block";
             }
-            if (photoInput) photoInput.value = ''; 
-            if (fileInputLabel) fileInputLabel.innerText = 'בחר תמונה להעלאה';
-            if (uploadPreviewDiv) uploadPreviewDiv.classList.add('hidden');
-            
-            setTimeout(() => { 
-                if (uploadStatus) uploadStatus.classList.add('hidden'); 
-            }, 8000);
-        }).catch((error) => {
-            console.error(error);
-            if (uploadStatus) {
-                uploadStatus.innerText = "שגיאה בהעלאה. אנא נסה שוב.";
-                uploadStatus.className = "text-sm font-medium text-red-600 mb-4 text-center block";
-            }
-        });
+        }
+
+        if (photoInput) photoInput.value = '';
+        if (fileInputLabel) fileInputLabel.innerText = 'בחר תמונות להעלאה';
+        if (uploadPreviewGrid) uploadPreviewGrid.innerHTML = '';
+        if (uploadPreviewDiv) uploadPreviewDiv.classList.add('hidden');
+
+        setTimeout(() => {
+            if (uploadStatus) uploadStatus.classList.add('hidden');
+        }, 8000);
     });
 }
 
