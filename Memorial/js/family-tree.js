@@ -119,6 +119,7 @@ function renderFamilyTreeUI() {
     if (!container) return;
 
     container.innerHTML = '';
+    let totalGreatGrandchildren = 0;
 
     Object.keys(currentTreeData).forEach((branchKey) => {
         const branch = currentTreeData[branchKey];
@@ -129,6 +130,8 @@ function renderFamilyTreeUI() {
         if (branch.grandchildren) {
             Object.keys(branch.grandchildren).forEach((gName) => {
                 const greatGrandchildrenList = branch.grandchildren[gName] || [];
+                totalGreatGrandchildren += greatGrandchildrenList.length;
+
                 const countBadge = greatGrandchildrenList.length > 0 
                     ? `<span class="bg-amber-800 text-amber-100 text-[10px] px-1.5 py-0.5 rounded-full mr-1 font-bold">${greatGrandchildrenList.length}</span>` 
                     : '';
@@ -175,6 +178,12 @@ function renderFamilyTreeUI() {
 
         container.appendChild(branchCard);
     });
+
+    // עדכון מונה הנינים הדינמי בכרטיסיית הראש הראשית של יהודה ושושנה ז"ל
+    const ggBadge = document.getElementById('greatGrandchildrenCountBadge');
+    if (ggBadge) {
+        ggBadge.innerText = `${totalGreatGrandchildren} נינים`;
+    }
 }
 
 // מודל הוספת נינים
