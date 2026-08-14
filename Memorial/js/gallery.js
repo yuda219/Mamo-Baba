@@ -1,4 +1,4 @@
-// מודול גלריית זיכרונות, קרוסלת Swiper, חלון רשת מלאה והעלאת תמונות
+// מודול גלריית זיכרונות, קרוסלת Swiper, חלון רשת מלאה, העלאת תמונות ואישור מנהל
 
 // תמונות ארכיון קבועות
 const staticPhotos = [
@@ -104,8 +104,8 @@ function createGridCardElement(src, badgeText, isUploaded = false) {
     return card;
 }
 
-// טעינת תמונות ראשונית ועדכון דינמי (עבור הקרוסלה ועבור רשת התמונות המלאה)
-function renderGallery(visitorPhotos = []) {
+// טעינת תמונות ראשונית ועדכון דינמי (רק תמונות מאושרות הוצגו בגלריה הציבורית)
+function renderGallery(rawPhotosDict = {}) {
     const wrapper = document.getElementById('mainGalleryWrapper');
     const gridContainer = document.getElementById('fullGalleryGrid');
 
@@ -113,9 +113,20 @@ function renderGallery(visitorPhotos = []) {
     if (gridContainer) gridContainer.innerHTML = '';
 
     let totalCount = 0;
+    const approvedUploadedPhotos = [];
 
-    // תמונות מועלות מהמבקרים (חדשות ביותר ראשונות)
-    const uploadedArray = [...visitorPhotos].reverse();
+    // סינון תמונות מאושרות בלבד (אלו עם status === 'approved' או תמונות ישנות ללא שדה status)
+    if (rawPhotosDict) {
+        Object.keys(rawPhotosDict).forEach((key) => {
+            const p = rawPhotosDict[key];
+            if (p.status === 'approved' || !p.status) {
+                approvedUploadedPhotos.push(p);
+            }
+        });
+    }
+
+    // תמונות מועלות מאושרות (חדשות ביותר ראשונות)
+    const uploadedArray = [...approvedUploadedPhotos].reverse();
     uploadedArray.forEach(photo => {
         const dateText = photo.date ? `מבקרים | ${photo.date}` : "תמונת מבקרים";
         if (wrapper) wrapper.appendChild(createSlideElement(photo.url, dateText, true));
@@ -139,9 +150,6 @@ function renderGallery(visitorPhotos = []) {
 
     gallerySwiper.update();
 }
-
-// אתחול גלריית הבסיס
-renderGallery([]);
 
 // Modal Logic (פתיחת תמונות בהגדלה)
 const imageModal = document.getElementById('imageModal');
@@ -213,7 +221,7 @@ if (uploadBtn) {
 
         if (uploadStatus) {
             uploadStatus.classList.remove('hidden');
-            uploadStatus.innerText = "מעלה תמונה לקרוסלה, אנא המתן...";
+            uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
             uploadStatus.className = "text-sm font-medium text-amber-700 mb-4 text-center block animate-pulse";
         }
 
@@ -222,11 +230,17 @@ if (uploadBtn) {
         storageRef.put(file).then((snapshot) => {
             return snapshot.ref.getDownloadURL();
         }).then((downloadURL) => {
-            dynamicGalleryRef.push({ url: downloadURL, date: new Date().toLocaleDateString('he-IL') });
+            // שמירת תמונה חדשה בסטטוס pending לאישור מנהל
+            dynamicGalleryRef.push({ 
+                url: downloadURL, 
+                date: new Date().toLocaleDateString('he-IL'),
+                status: 'pending',
+                timestamp: Date.now()
+            });
             
             if (uploadStatus) {
-                uploadStatus.innerText = "התמונה הועלתה בהצלחה לגלריה!";
-                uploadStatus.className = "text-sm font-medium text-green-600 mb-4 text-center block";
+                uploadStatus.innerText = "✨ התמונה הועברה בהצלחה לאישור מנהל המערכת! היא תופיע בגלריה לאחר אישורה בפאנל המנהל.";
+                uploadStatus.className = "text-xs font-bold text-green-800 bg-green-50 p-3 rounded-xl border border-green-300 mb-4 text-center block shadow-2xs leading-relaxed";
             }
             if (photoInput) photoInput.value = ''; 
             if (fileInputLabel) fileInputLabel.innerText = 'בחר תמונה להעלאה';
@@ -234,7 +248,7 @@ if (uploadBtn) {
             
             setTimeout(() => { 
                 if (uploadStatus) uploadStatus.classList.add('hidden'); 
-            }, 4000);
+            }, 8000);
         }).catch((error) => {
             console.error(error);
             if (uploadStatus) {
@@ -245,9 +259,97 @@ if (uploadBtn) {
     });
 }
 
-// האזנה בזמן אמת לעדכוני תמונות מ-Firebase
+// ניהול תמונות ממתינות בפאנל המנהל (Admin Photo Approval Workflow)
+window.allVisitorPhotosRaw = {};
+
 dynamicGalleryRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    const photos = data ? Object.values(data) : [];
-    renderGallery(photos);
+    window.allVisitorPhotosRaw = snapshot.val() || {};
+    renderGallery(window.allVisitorPhotosRaw);
+    window.updatePendingPhotosBadgeCount();
+    window.renderPendingPhotosList();
 });
+
+// עדכון מונה תמונות ממתינות בפאנל המנהל
+window.updatePendingPhotosBadgeCount = function() {
+    const raw = window.allVisitorPhotosRaw || {};
+    const pendingKeys = Object.keys(raw).filter(k => raw[k] && raw[k].status === 'pending');
+    const badge = document.getElementById('adminPendingPhotosCountBadge');
+    
+    if (badge) {
+        badge.innerText = pendingKeys.length;
+        if (pendingKeys.length > 0) {
+            badge.className = "bg-amber-500 text-stone-900 text-xs font-bold px-2 py-0.5 rounded-full animate-bounce";
+        } else {
+            badge.className = "bg-stone-200 text-stone-700 text-xs font-semibold px-2 py-0.5 rounded-full";
+        }
+    }
+
+    // עדכון סך כל הבלוקים הממתינים בכפתור המנהל הראשי בתחתית אילן היוחסין
+    if (typeof window.updateTotalPendingBadge === 'function') {
+        window.updateTotalPendingBadge();
+    }
+};
+
+// רנדור רשימת התמונות הממתינות לאישור בפאנל המנהל
+window.renderPendingPhotosList = function() {
+    const container = document.getElementById('adminPendingPhotosList');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const raw = window.allVisitorPhotosRaw || {};
+    const pendingKeys = Object.keys(raw).filter(k => raw[k] && raw[k].status === 'pending');
+
+    if (pendingKeys.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-10 text-stone-400">
+                <span class="text-3xl block mb-2">📸</span>
+                <p class="text-sm font-medium">אין כרגע תמונות ממתינות לאישור.</p>
+            </div>
+        `;
+        return;
+    }
+
+    pendingKeys.forEach((photoId) => {
+        const photo = raw[photoId];
+        const card = document.createElement('div');
+        card.className = "bg-white p-3.5 rounded-2xl border border-stone-200 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4";
+        
+        card.innerHTML = `
+            <div class="flex items-center gap-3.5 w-full sm:w-auto">
+                <img src="${photo.url}" class="w-20 h-20 object-cover rounded-xl border border-stone-200 shadow-2xs cursor-pointer hover:scale-105 transition" onclick="openModal('${photo.url}')">
+                <div>
+                    <span class="text-xs font-bold text-stone-900 block">תמונת מבקר ממתינה לאישור</span>
+                    <span class="text-[11px] text-stone-500 block mt-0.5">תאריך העלאה: ${photo.date || ''}</span>
+                    <button onclick="openModal('${photo.url}')" class="text-[11px] text-amber-800 hover:underline font-bold mt-1 inline-block">🔍 לחץ לצפייה בגודל מלא</button>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-stone-100">
+                <button onclick="approvePhoto('${photoId}')" class="bg-green-700 hover:bg-green-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-2xs flex items-center gap-1 cursor-pointer">
+                    <span>✓</span>
+                    <span>אישור לגלריה</span>
+                </button>
+                <button onclick="rejectPhoto('${photoId}')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition shadow-2xs flex items-center gap-1 cursor-pointer">
+                    <span>✕</span>
+                    <span>דחייה</span>
+                </button>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+};
+
+// אישור תמונה ע"י המנהל
+window.approvePhoto = function(photoId) {
+    dynamicGalleryRef.child(`${photoId}/status`).set('approved').then(() => {
+        console.log("Photo approved successfully!");
+    });
+};
+
+// דחיית תמונה ע"י המנהל (מחיקה)
+window.rejectPhoto = function(photoId) {
+    if (confirm("האם אתה בטוח שברצונך לדחות ולמחוק תמונה זו?")) {
+        dynamicGalleryRef.child(photoId).remove();
+    }
+};

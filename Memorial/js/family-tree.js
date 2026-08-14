@@ -296,8 +296,79 @@ function showAdminAuth() {
 function showAdminPanel() {
     if (adminAuthSection) adminAuthSection.classList.add('hidden');
     if (adminPanelSection) adminPanelSection.classList.remove('hidden');
-    renderPendingRequestsList();
+
+    const pendingTreeCount = Object.keys(currentPendingRequests).length;
+    const rawPhotos = window.allVisitorPhotosRaw || {};
+    const pendingPhotosCount = Object.keys(rawPhotos).filter(k => rawPhotos[k] && rawPhotos[k].status === 'pending').length;
+
+    // אם יש תמונות ממתינות לאישור ואין בקשות נינים, פתח ישירות את לשונית התמונות
+    if (pendingPhotosCount > 0 && pendingTreeCount === 0) {
+        switchAdminTab('photos');
+    } else {
+        switchAdminTab('tree');
+    }
 }
+
+// מעבר בין לשוניות בפאנל המנהל (בקשות נינים vs אישור תמונות)
+window.switchAdminTab = function(tab) {
+    const treeTab = document.getElementById('adminTabTree');
+    const photosTab = document.getElementById('adminTabPhotos');
+    const treeContent = document.getElementById('adminTreeTabContent');
+    const photosContent = document.getElementById('adminPhotosTabContent');
+
+    if (tab === 'tree') {
+        if (treeContent) treeContent.classList.remove('hidden');
+        if (photosContent) photosContent.classList.add('hidden');
+        if (treeTab) treeTab.className = "pb-2.5 px-3 font-bold text-xs border-b-2 border-amber-800 text-amber-900 transition flex items-center gap-1.5 cursor-pointer";
+        if (photosTab) photosTab.className = "pb-2.5 px-3 font-medium text-xs border-b-2 border-transparent text-stone-500 hover:text-stone-800 transition flex items-center gap-1.5 cursor-pointer";
+        renderPendingRequestsList();
+    } else {
+        if (treeContent) treeContent.classList.add('hidden');
+        if (photosContent) photosContent.classList.remove('hidden');
+        if (photosTab) photosTab.className = "pb-2.5 px-3 font-bold text-xs border-b-2 border-amber-800 text-amber-900 transition flex items-center gap-1.5 cursor-pointer";
+        if (treeTab) treeTab.className = "pb-2.5 px-3 font-medium text-xs border-b-2 border-transparent text-stone-500 hover:text-stone-800 transition flex items-center gap-1.5 cursor-pointer";
+        if (typeof window.renderPendingPhotosList === 'function') {
+            window.renderPendingPhotosList();
+        }
+    }
+};
+
+// ספירת בקשות נינים ממתינות
+function updatePendingBadgeCount() {
+    const pendingKeys = Object.keys(currentPendingRequests);
+    const count = pendingKeys.length;
+    const badge = document.getElementById('adminPendingTreeCountBadge');
+    if (badge) {
+        badge.innerText = count;
+        if (count > 0) {
+            badge.className = "bg-amber-500 text-stone-900 text-xs font-bold px-2 py-0.5 rounded-full animate-bounce";
+        } else {
+            badge.className = "bg-amber-100 text-amber-900 text-[10px] px-2 py-0.5 rounded-full font-bold";
+        }
+    }
+
+    if (typeof window.updateTotalPendingBadge === 'function') {
+        window.updateTotalPendingBadge();
+    }
+}
+
+// ספירת סך כל הבקשות והתמונות הממתינות בכפתור המנהל הראשי
+window.updateTotalPendingBadge = function() {
+    const pendingTreeCount = Object.keys(currentPendingRequests).length;
+    const rawPhotos = window.allVisitorPhotosRaw || {};
+    const pendingPhotosCount = Object.keys(rawPhotos).filter(k => rawPhotos[k] && rawPhotos[k].status === 'pending').length;
+    
+    const totalPending = pendingTreeCount + pendingPhotosCount;
+    const mainBadge = document.getElementById('mainAdminTotalPendingBadge');
+    if (mainBadge) {
+        mainBadge.innerText = totalPending;
+        if (totalPending > 0) {
+            mainBadge.className = "bg-amber-500 text-stone-950 text-xs font-bold px-2.5 py-0.5 rounded-full animate-bounce shadow-xs";
+        } else {
+            mainBadge.className = "bg-stone-700 text-stone-300 text-xs font-semibold px-2 py-0.5 rounded-full";
+        }
+    }
+};
 
 // אימות סיסמת מנהל
 const adminAuthForm = document.getElementById('adminAuthForm');
