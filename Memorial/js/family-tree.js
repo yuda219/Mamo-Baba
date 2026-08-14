@@ -113,7 +113,7 @@ pendingRequestsRef.on('value', (snapshot) => {
     renderPendingRequestsList();
 });
 
-// רנדור אילן היוחסין בדינמיות לפי הנתונים המעודכנים מ-Firebase
+// רנדור אילן היוחסין בדינמיות לפי הנתונים המעודכנים מ-Firebase (תצוגה מרווחת ומבנית)
 function renderFamilyTreeUI() {
     const container = document.getElementById('familyTreeBranchesContainer');
     if (!container) return;
@@ -124,53 +124,74 @@ function renderFamilyTreeUI() {
     Object.keys(currentTreeData).forEach((branchKey) => {
         const branch = currentTreeData[branchKey];
         const branchCard = document.createElement('div');
-        branchCard.className = "bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs hover:shadow-lg hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group";
+        branchCard.className = "bg-white border border-stone-200/90 rounded-3xl p-5 sm:p-7 shadow-xs hover:shadow-md hover:border-amber-500/60 transition-all duration-300 relative overflow-hidden group";
         
-        let grandchildrenHTML = '';
+        let grandchildrenCardsHTML = '';
         if (branch.grandchildren) {
             Object.keys(branch.grandchildren).forEach((gName) => {
                 const greatGrandchildrenList = branch.grandchildren[gName] || [];
                 totalGreatGrandchildren += greatGrandchildrenList.length;
 
-                const countBadge = greatGrandchildrenList.length > 0 
-                    ? `<span class="bg-amber-800 text-amber-100 text-[10px] px-1.5 py-0.5 rounded-full mr-1 font-bold">${greatGrandchildrenList.length}</span>` 
-                    : '';
-
                 let greatChildrenBadges = '';
                 if (greatGrandchildrenList.length > 0) {
-                    greatChildrenBadges = `<div class="w-full flex flex-wrap gap-1 justify-center mt-1.5 pt-1.5 border-t border-amber-200/50">`;
+                    greatChildrenBadges = `<div class="flex flex-wrap gap-1.5 pt-1.5">`;
                     greatGrandchildrenList.forEach((greatChild) => {
-                        greatChildrenBadges += `<span class="bg-amber-100/90 text-amber-950 border border-amber-300 px-2 py-0.5 rounded-md text-[11px] font-medium shadow-2xs">🌱 ${greatChild}</span>`;
+                        greatChildrenBadges += `<span class="bg-amber-100/90 text-amber-950 border border-amber-300/80 px-2.5 py-1 rounded-xl text-xs font-semibold shadow-2xs">🌱 ${greatChild}</span>`;
                     });
                     greatChildrenBadges += `</div>`;
+                } else {
+                    greatChildrenBadges = `<span class="text-[11px] text-stone-400 italic block pt-0.5">אין נינים רשומים עדין</span>`;
                 }
 
-                grandchildrenHTML += `
-                    <div class="flex flex-col items-center">
-                        <button onclick="openAddGreatGrandchildrenModal('${branchKey}', '${gName}')" class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200/80 hover:border-amber-400 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition flex items-center gap-1 group/btn cursor-pointer" title="לחץ להוספת ילדים">
-                            <span>${gName}</span>
-                            ${countBadge}
-                            <span class="text-[10px] text-amber-700 opacity-60 group-hover/btn:opacity-100 transition font-bold">+</span>
-                        </button>
-                        ${greatChildrenBadges}
+                grandchildrenCardsHTML += `
+                    <div class="bg-stone-50/90 border border-stone-200/80 hover:border-amber-300 rounded-2xl p-4 flex flex-col justify-between transition-all duration-200 shadow-2xs hover:shadow-xs">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2.5 pb-2 border-b border-stone-200/70">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-700"></span>
+                                    <span class="font-bold text-stone-900 text-base font-serif-custom">${gName}</span>
+                                </div>
+                                <button onclick="openAddGreatGrandchildrenModal('${branchKey}', '${gName}')" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-2xs flex items-center gap-1.5 cursor-pointer whitespace-nowrap" title="לחץ להוספת ילדים">
+                                    <span class="font-bold text-xs">+</span>
+                                    <span>הוסף ילדים</span>
+                                </button>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-amber-950/70 tracking-wider block mb-1">הילדים (דור 4):</span>
+                                ${greatChildrenBadges}
+                            </div>
+                        </div>
                     </div>
                 `;
             });
         }
 
+        const grandchildrenCount = branch.grandchildren ? Object.keys(branch.grandchildren).length : (branch.childrenCount || 4);
+
         branchCard.innerHTML = `
-            <div class="absolute top-0 right-0 left-0 h-1.5 bg-gradient-to-r from-amber-700 to-amber-900"></div>
+            <div class="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-950"></div>
             <div>
-                <div class="w-3 h-3 rounded-full bg-amber-700 border-2 border-white shadow-2xs mx-auto -mt-2 mb-3 z-10"></div>
-                <div class="text-center pb-3.5 border-b border-stone-100">
-                    <h3 class="font-bold text-base sm:text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors leading-snug">${branch.title}</h3>
-                    <span class="inline-block mt-1.5 bg-amber-100/90 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">${branch.childrenCount || 4} ילדים</span>
+                <!-- כותרת ענף משפחתי -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200/80 pb-4 mb-5 gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-900 border border-amber-300 flex items-center justify-center font-bold text-lg shadow-2xs">🌳</span>
+                        <div>
+                            <h3 class="font-bold text-xl sm:text-2xl text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">${branch.title}</h3>
+                            <span class="text-xs text-stone-500 font-medium block mt-0.5">ענף משפחתי • דור הממשיכים</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-start sm:self-auto">
+                        <span class="bg-amber-100/90 text-amber-900 border border-amber-300 font-bold px-3.5 py-1 rounded-full text-xs shadow-2xs">
+                            ${grandchildrenCount} ילדים (נכדים)
+                        </span>
+                    </div>
                 </div>
                 
-                <div class="pt-4">
-                    <span class="text-[11px] font-bold text-amber-900/70 tracking-wider block text-center mb-2.5 font-serif-custom">הילדים (נכדים):</span>
-                    <div class="flex flex-wrap gap-1.5 justify-center items-start">
-                        ${grandchildrenHTML}
+                <!-- רשת 2 עמודות רחבות ומרווחת לכל הנכדים והנינים בענף זה -->
+                <div>
+                    <span class="text-xs font-bold text-amber-950/80 tracking-wide block mb-3 font-serif-custom">הילדים והנינים בענף זה:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        ${grandchildrenCardsHTML}
                     </div>
                 </div>
             </div>
@@ -396,21 +417,6 @@ if (adminAuthForm) {
             }
         }
     });
-}
-
-// ספירת בקשות ממתינות
-function updatePendingBadgeCount() {
-    const pendingKeys = Object.keys(currentPendingRequests);
-    const count = pendingKeys.length;
-    const badge = document.getElementById('adminPendingCountBadge');
-    if (badge) {
-        badge.innerText = count;
-        if (count > 0) {
-            badge.className = "bg-amber-500 text-stone-900 text-xs font-bold px-2 py-0.5 rounded-full animate-bounce";
-        } else {
-            badge.className = "bg-stone-700 text-stone-300 text-xs font-semibold px-2 py-0.5 rounded-full";
-        }
-    }
 }
 
 // רנדור רשימת הבקשות הממתינות בפאנל המנהל
