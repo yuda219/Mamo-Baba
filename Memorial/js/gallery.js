@@ -1,4 +1,4 @@
-// מודול גלריית זיכרונות, קרוסלת Swiper והעלאת תמונות
+// מודול גלריית זיכרונות, קרוסלת Swiper, חלון רשת מלאה והעלאת תמונות
 
 // תמונות ארכיון קבועות
 const staticPhotos = [
@@ -32,6 +32,27 @@ let gallerySwiper = new Swiper(".gallery-swiper", {
     }
 });
 
+// פתיחה וסגירה של חלון הגלרייה המלאה (Full Grid Modal)
+const fullGalleryModal = document.getElementById('fullGalleryModal');
+
+window.openFullGalleryModal = function() {
+    if (!fullGalleryModal) return;
+    fullGalleryModal.classList.remove('hidden');
+    fullGalleryModal.classList.add('flex');
+    setTimeout(() => {
+        fullGalleryModal.classList.remove('opacity-0');
+    }, 10);
+};
+
+window.closeFullGalleryModal = function() {
+    if (!fullGalleryModal) return;
+    fullGalleryModal.classList.add('opacity-0');
+    setTimeout(() => {
+        fullGalleryModal.classList.add('hidden');
+        fullGalleryModal.classList.remove('flex');
+    }, 300);
+};
+
 // יצירת אלמנט Slide בקרוסלה
 function createSlideElement(src, badgeText, isUploaded = false) {
     const slide = document.createElement('div');
@@ -60,11 +81,36 @@ function createSlideElement(src, badgeText, isUploaded = false) {
     return slide;
 }
 
-// טעינת תמונות ראשונית ועדכון דינמי מ-Firebase
+// יצירת כרטיסייה לרשת הגלריה המלאה (Full Grid Modal)
+function createGridCardElement(src, badgeText, isUploaded = false) {
+    const card = document.createElement('div');
+    card.className = "relative group h-40 sm:h-48 rounded-2xl overflow-hidden shadow-xs cursor-pointer border border-stone-200 bg-stone-100 transition-all duration-300 hover:shadow-xl hover:border-amber-500/60";
+    card.onclick = () => openModal(src);
+
+    const badgeBg = isUploaded 
+        ? "bg-amber-900/80 text-amber-100 border-amber-500/40" 
+        : "bg-stone-900/70 text-stone-200 border-white/20";
+
+    card.innerHTML = `
+        <img src="${src}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.closest('.relative').remove();">
+        <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white backdrop-blur-[2px]">
+            <span class="text-xl mb-1 transform group-hover:scale-110 transition-transform">🔍</span>
+            <span class="text-[11px] font-medium">להגדלה</span>
+        </div>
+        <div class="absolute bottom-2 right-2 text-[10px] font-medium px-2.5 py-0.5 rounded-full backdrop-blur-md border ${badgeBg} shadow-2xs pointer-events-none">
+            ${badgeText}
+        </div>
+    `;
+    return card;
+}
+
+// טעינת תמונות ראשונית ועדכון דינמי (עבור הקרוסלה ועבור רשת התמונות המלאה)
 function renderGallery(visitorPhotos = []) {
     const wrapper = document.getElementById('mainGalleryWrapper');
-    if (!wrapper) return;
-    wrapper.innerHTML = '';
+    const gridContainer = document.getElementById('fullGalleryGrid');
+
+    if (wrapper) wrapper.innerHTML = '';
+    if (gridContainer) gridContainer.innerHTML = '';
 
     let totalCount = 0;
 
@@ -72,18 +118,24 @@ function renderGallery(visitorPhotos = []) {
     const uploadedArray = [...visitorPhotos].reverse();
     uploadedArray.forEach(photo => {
         const dateText = photo.date ? `מבקרים | ${photo.date}` : "תמונת מבקרים";
-        wrapper.appendChild(createSlideElement(photo.url, dateText, true));
+        if (wrapper) wrapper.appendChild(createSlideElement(photo.url, dateText, true));
+        if (gridContainer) gridContainer.appendChild(createGridCardElement(photo.url, dateText, true));
         totalCount++;
     });
 
     // תמונות ארכיון קבועות
     staticPhotos.forEach((src, idx) => {
-        wrapper.appendChild(createSlideElement(src, `ארכיון #${idx + 1}`, false));
+        const dateText = `ארכיון #${idx + 1}`;
+        if (wrapper) wrapper.appendChild(createSlideElement(src, dateText, false));
+        if (gridContainer) gridContainer.appendChild(createGridCardElement(src, dateText, false));
         totalCount++;
     });
 
     const badge = document.getElementById('photoCountBadge');
     if (badge) badge.innerText = `${totalCount} תמונות בגלריה`;
+
+    const fullModalBadge = document.getElementById('fullGalleryModalBadge');
+    if (fullModalBadge) fullModalBadge.innerText = `${totalCount} תמונות מוצגות ברשת המלאה`;
 
     gallerySwiper.update();
 }

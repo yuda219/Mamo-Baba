@@ -328,11 +328,15 @@
             <section class="bg-stone-50/70 p-6 md:p-8 rounded-3xl border border-stone-200/80 shadow-sm relative">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-stone-200/80 pb-5 gap-4">
                     <div>
-                        <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="flex flex-wrap items-center gap-3">
                             <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">גלריית זיכרונות</h2>
                             <span id="photoCountBadge" class="text-xs bg-amber-100 text-amber-900 border border-amber-300/80 font-semibold px-3 py-1 rounded-full shadow-xs">16 תמונות</span>
+                            <button onclick="openFullGalleryModal()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3.5 py-1.5 rounded-full transition shadow-2xs flex items-center gap-1.5 cursor-pointer border border-amber-700/50">
+                                <span>🖼️</span>
+                                <span>תצוגת כל התמונות ברשת</span>
+                            </button>
                         </div>
-                        <p class="text-stone-500 text-sm mt-1">כל התמונות והמזכרות מרוכזות בקרוסלה אחת | לחצו על תמונה להגדלה</p>
+                        <p class="text-stone-500 text-sm mt-1">לחצו על תמונה להגדלה | לחצו על "תצוגת כל התמונות ברשת" לצפייה בכל הגלריה</p>
                     </div>
                     
                     <!-- אזור העלאת תמונה -->
@@ -530,9 +534,41 @@
         </div>
     </div>
 
+    <!-- חלון צף לגלריית התמונות המלאה (Full Grid Gallery Modal) -->
+    <div id="fullGalleryModal" class="fixed inset-0 z-[110] bg-stone-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 opacity-0 transition-opacity duration-300">
+        <div class="relative max-w-5xl w-full bg-stone-50 rounded-3xl shadow-2xl border border-stone-200 overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- כותרת המודל -->
+            <div class="bg-gradient-to-r from-stone-900 via-amber-950 to-stone-900 text-white p-5 sm:p-6 flex justify-between items-center border-b border-amber-800/40">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-amber-400 text-xl">🖼️</span>
+                        <h3 class="text-2xl font-bold font-serif-custom text-amber-100">גלריית התמונות המלאה</h3>
+                    </div>
+                    <p class="text-stone-300 text-xs mt-1">כל התמונות והמזכרות של משפחת סבג במקום אחד | לחץ על תמונה להגדלה</p>
+                </div>
+                
+                <button onclick="closeFullGalleryModal()" class="w-9 h-9 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center text-xl transition-all duration-200 border border-white/10">&times;</button>
+            </div>
+
+            <!-- אזור רשת התמונות בגלילה -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar bg-stone-50">
+                <div id="fullGalleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+                    <!-- ייטען דינמית ב-JavaScript -->
+                </div>
+            </div>
+
+            <!-- פוטר המודל -->
+            <div class="bg-stone-100 px-6 py-3 border-t border-stone-200 flex justify-between items-center text-xs text-stone-500">
+                <span id="fullGalleryModalBadge">16 תמונות מוצגות</span>
+                <button onclick="closeFullGalleryModal()" class="text-stone-700 hover:text-stone-900 font-bold">סגור חלון &times;</button>
+            </div>
+        </div>
+    </div>
+
     <!-- מודל (חלון קופץ) להגדלת תמונות -->
-    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300" onclick="closeModal()">
-        <button class="absolute top-6 right-6 text-white text-4xl font-bold hover:text-stone-300 transition-colors z-[101]">&times;</button>
+    <div id="imageModal" class="fixed inset-0 z-[125] bg-black/90 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300" onclick="closeModal()">
+        <button class="absolute top-6 right-6 text-white text-4xl font-bold hover:text-stone-300 transition-colors z-[126]">&times;</button>
         <img id="modalImage" class="max-w-[95vw] max-h-[90vh] object-contain rounded-lg shadow-2xl" src="">
     </div>
 
