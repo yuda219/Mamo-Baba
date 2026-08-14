@@ -235,72 +235,147 @@
                 </div>
             </section>
 
-            <!-- עץ המשפחה (נקי ויוקרתי) -->
-            <section>
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">אילן יוחסין משפחתי</h2>
-                    <p class="text-stone-500 mt-2">הדורות הבאים של משפחת סבג</p>
+            <!-- אילן יוחסין משפחתי מעוצב וברור -->
+            <section class="bg-gradient-to-b from-stone-50 via-amber-50/30 to-white p-6 md:p-10 rounded-3xl border border-stone-200/90 shadow-sm relative overflow-hidden">
+                <div class="text-center mb-8">
+                    <span class="text-amber-800 text-3xl mb-1 block">🌿</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-stone-900 font-serif-custom">אילן יוחסין משפחתי</h2>
+                    <p class="text-stone-600 mt-1 text-sm md:text-base">דור המייסדים, 5 הילדים והנכדים הממשיכים את הדרך</p>
                 </div>
                 
-                <div class="flex flex-col items-center mb-8">
-                    <div class="bg-[#292524] text-[#f4f1eb] py-4 px-8 rounded-full shadow-lg border border-[#44403c] text-center relative z-10">
-                        <span class="text-xl font-bold font-serif-custom tracking-wide">יהודה ושושנה סבג</span>
+                <!-- דור המייסדים (ראש האילן) -->
+                <div class="flex flex-col items-center mb-8 relative">
+                    <div class="bg-gradient-to-r from-stone-900 via-stone-850 to-stone-900 text-white py-5 px-8 md:px-14 rounded-3xl shadow-xl border-2 border-amber-500/50 text-center relative z-10 hover:border-amber-400 transition-all duration-300">
+                        <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-500/20 text-amber-300 text-xl mb-1 border border-amber-400/30">👑</div>
+                        <h3 class="text-2xl md:text-3xl font-bold font-serif-custom tracking-wide text-amber-100">יהודה ושושנה סבג ז"ל</h3>
+                        <div class="flex items-center justify-center gap-3 text-xs md:text-sm text-amber-200/90 font-medium mt-2 pt-2 border-t border-amber-800/60">
+                            <span class="bg-amber-900/60 px-3 py-1 rounded-full border border-amber-700/50">5 ילדים</span>
+                            <span>•</span>
+                            <span class="bg-amber-900/60 px-3 py-1 rounded-full border border-amber-700/50">21 נכדים</span>
+                        </div>
                     </div>
-                    <div class="w-px h-10 bg-stone-300"></div>
+                    
+                    <!-- קו הגזע המרכזי והענפים -->
+                    <div class="w-1 h-8 bg-amber-700/60"></div>
+                    <div class="hidden lg:block w-4/5 h-0.5 bg-amber-700/40 relative">
+                        <div class="absolute -top-1 left-0 w-2.5 h-2.5 rounded-full bg-amber-600"></div>
+                        <div class="absolute -top-1 left-1/4 w-2.5 h-2.5 rounded-full bg-amber-600"></div>
+                        <div class="absolute -top-1 left-2/4 w-2.5 h-2.5 rounded-full bg-amber-600"></div>
+                        <div class="absolute -top-1 left-3/4 w-2.5 h-2.5 rounded-full bg-amber-600"></div>
+                        <div class="absolute -top-1 right-0 w-2.5 h-2.5 rounded-full bg-amber-600"></div>
+                    </div>
+                    <div class="w-1 h-4 bg-amber-700/40 hidden lg:block"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                <!-- 5 ענפי המשפחה (הילדים והנכדים) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 relative">
                     
-                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
-                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">אורה וסמי יצחקי</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">איתי</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אודליה</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אוהד</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">איתמר</span>
+                    <!-- ענף 1: אורה וסמי יצחקי -->
+                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 left-0 h-1.5 bg-amber-700"></div>
+                        <div>
+                            <div class="text-center pb-3 border-b border-stone-100">
+                                <h3 class="font-bold text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">אורה וסמי יצחקי</h3>
+                                <span class="inline-block mt-1 bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">4 ילדים</span>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block text-center mb-2.5">הילדים (נכדים):</span>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">איתי</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אודליה</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אוהד</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">איתמר</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
-                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">אבי ויהודית סבג</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">שנית</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אורטל</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">יהודה</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">חננאל</span>
+                    <!-- ענף 2: אבי ויהודית סבג -->
+                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 left-0 h-1.5 bg-amber-700"></div>
+                        <div>
+                            <div class="text-center pb-3 border-b border-stone-100">
+                                <h3 class="font-bold text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">אבי ויהודית סבג</h3>
+                                <span class="inline-block mt-1 bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">4 ילדים</span>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block text-center mb-2.5">הילדים (נכדים):</span>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">שנית</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אורטל</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">יהודה</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">חננאל</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
-                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">יעל ודוד חן</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אודי</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">שירן</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אדווה</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אריאל</span>
+                    <!-- ענף 3: יעל ודוד חן -->
+                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 left-0 h-1.5 bg-amber-700"></div>
+                        <div>
+                            <div class="text-center pb-3 border-b border-stone-100">
+                                <h3 class="font-bold text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">יעל ודוד חן</h3>
+                                <span class="inline-block mt-1 bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">4 ילדים</span>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block text-center mb-2.5">הילדים (נכדים):</span>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אודי</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">שירן</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אדווה</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אריאל</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors">
-                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">יהודית ואילן נגר</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">לילך</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">דורין</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אדיר</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">נאור</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">קוראל</span>
+                    <!-- ענף 4: יהודית ואילן נגר -->
+                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 left-0 h-1.5 bg-amber-700"></div>
+                        <div>
+                            <div class="text-center pb-3 border-b border-stone-100">
+                                <h3 class="font-bold text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">יהודית ואילן נגר</h3>
+                                <span class="inline-block mt-1 bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">5 ילדים</span>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block text-center mb-2.5">הילדים (נכדים):</span>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">לילך</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">דורין</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אדיר</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">נאור</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">קוראל</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 hover:border-amber-700/30 transition-colors md:col-span-2 lg:col-span-1 md:w-3/4 mx-auto">
-                        <h3 class="text-center font-bold text-lg text-amber-900 mb-4 font-serif-custom border-b border-stone-100 pb-3">ויוון ושלומי בן חיון</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">יותם</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אמיתי</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אביתר</span>
-                            <span class="bg-stone-50 text-stone-700 border border-stone-200 px-4 py-1.5 rounded-full text-sm">אליה</span>
+                    <!-- ענף 5: ויוון ושלומי בן חיון -->
+                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 left-0 h-1.5 bg-amber-700"></div>
+                        <div>
+                            <div class="text-center pb-3 border-b border-stone-100">
+                                <h3 class="font-bold text-lg text-stone-900 font-serif-custom group-hover:text-amber-800 transition-colors">ויוון ושלומי בן חיון</h3>
+                                <span class="inline-block mt-1 bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-0.5 text-xs rounded-full shadow-2xs">4 ילדים</span>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block text-center mb-2.5">הילדים (נכדים):</span>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">יותם</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אמיתי</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-400 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אביתר</span>
+                                    <span class="bg-stone-50 hover:bg-amber-50 text-stone-800 border border-stone-200 hover:border-amber-300 px-3 py-1.5 rounded-xl text-xs font-semibold shadow-2xs transition">אליה</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </section>
 
