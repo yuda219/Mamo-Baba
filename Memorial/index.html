@@ -13,18 +13,17 @@
         .fade-in { animation: fadeIn 1.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         /* פס גלילה */
-        .messages-container::-webkit-scrollbar { width: 6px; }
-        .messages-container::-webkit-scrollbar-thumb { background-color: #d6d3d1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #d6d3d1; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-stone-50 text-gray-800 antialiased selection:bg-stone-300">
 
     <div class="max-w-2xl mx-auto bg-white min-h-screen shadow-2xl overflow-hidden pb-10">
         
-        <!-- Header Section עם התמונה המשפחתית -->
+        <!-- Header Section -->
         <div class="relative h-72 md:h-96 flex justify-center items-end pb-8 bg-stone-800" style="background-image: url('bg.jpg'); background-size: cover; background-position: center 30%;">
             <div class="absolute inset-0 bg-stone-900 opacity-25"></div>
-            <!-- תמונה ראשית עגולה -->
             <img src="main.jpg" alt="סבא וסבתא" class="absolute -bottom-16 w-36 h-36 rounded-full border-4 border-white shadow-lg object-cover z-10 bg-white" onerror="this.style.display='none'">
         </div>
 
@@ -44,62 +43,41 @@
             <!-- Timeline / Biography - ז'אז'ו -->
             <section>
                 <h2 class="text-2xl font-bold text-stone-800 mb-6 border-b-2 border-amber-700/40 pb-2">סיפור חייה של סוזן שושנה (ז'אז'ו) סבג ז"ל</h2>
-                
                 <div class="relative border-r-2 border-stone-200 pr-6 space-y-8 text-right">
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">1936 | ילדות, שורשים ויתמות</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            נולדה במרקש לדוד ואסתר נחמני ז"ל. בהיותה בת 10 חודשים בלבד, נפטר אביה. אמה, אסתר, אלמנה צעירה, גידלה אותה ואת אחיותיה כלביאה בתנאים לא פשוטים. השם המיוחד "זאזו" ניתן לה על שם זמרת צרפתייה, וליווה את אישיותה הייחודית כל חייה.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">נולדה במרקש לדוד ואסתר נחמני ז"ל. בהיותה בת 10 חודשים בלבד, נפטר אביה. אמה, אסתר, אלמנה צעירה, גידלה אותה ואת אחיותיה כלביאה בתנאים לא פשוטים. השם המיוחד "זאזו" ניתן לה על שם זמרת צרפתייה, וליווה את אישיותה הייחודית כל חייה.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">ילדות במלאח – אחריות ועבודה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            גדלה ברובע היהודי במרקש. לקראת גיל עשר נשלחה ללמוד תפירה אצל מי שלימים הייתה חמותה, ובמקביל החלה לעבוד במפעל השימורים Cartier כדי לסייע בפרנסת המשפחה. שם למדה והטמיעה את ערכי החריצות, ההסתפקות במועט והדאגה לאחר.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">גדלה ברובע היהודי במרקש. לקראת גיל עשר נשלחה ללמוד תפירה אצל מי שלימים הייתה חמותה, ובמקביל החלה לעבוד במפעל השימורים Cartier כדי לסייע בפרנסת המשפחה. שם למדה והטמיעה את ערכי החריצות, ההסתפקות במועט והדאגה לאחר.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">1949 | המפגש, האהבה והעלייה הראשונה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            בהלוויה של דודו של יהודה, נפגשו מבטיהם והחלה להירקם אהבתם. בשנת 1949, בתושייה רבה, השיגה זאזו את אישור אמה ועלתה לארץ יחד עם יהודה באונייה "ירושלים". הם נישאו בחיפה, אך בשל קשיי הקליטה נאלצו לחזור למרוקו.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בהלוויה של דודו של יהודה, נפגשו מבטיהם והחלה להירקם אהבתם. בשנת 1949, בתושייה רבה, השיגה זאזו את אישור אמה ועלתה לארץ יחד עם יהודה באונייה "ירושלים". הם נישאו בחיפה, אך בשל קשיי הקליטה נאלצו לחזור למרוקו.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">1954 | העלייה השנייה – הפעם לתמיד</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            כשהרתה שוב, הציבה זאזו עובדה נחרצת: "את הילד הזה אני אלד בארץ ישראל". הם עלו שוב לישראל, תוך שהם מסייעים בהעלאתה של סבתו של יהודה (עישה) ודואגים לה במסירות. המשפחה קבעה את ביתה בירושלים.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">כשהרתה שוב, הציבה זאזו עובדה נחרצת: "את הילד הזה אני אלד בארץ ישראל". הם עלו שוב לישראל, תוך שהם מסייעים בהעלאתה של סבתו של יהודה (עישה) ודואגים לה במסירות. המשפחה קבעה את ביתה בירושלים.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">הלב הפועם של הבית</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            למרות קשיי פוריות, בעקבות תפילות ונדרים נולדו חמישה ילדים (אורה, אבי, יעל, יהודית וויוון). ביתם ברחוב רשב"ג היה תמיד פתוח – מלא בבישוליה המופלאים, בשמחה, בשכנים ובאורחים שמיד הרגישו רצויים.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">למרות קשיי פוריות, בעקבות תפילות ונדרים נולדו חמישה ילדים (אורה, אבי, יעל, יהודית וויוון). ביתם ברחוב רשב"ג היה תמיד פתוח – מלא בבישוליה המופלאים, בשמחה, בשכנים ובאורחים שמיד הרגישו רצויים.</p>
                     </div>
-                    
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">2004 | מסירות עד רגעיו האחרונים</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            במשך כחמש שנים טיפלה זאזו בבעלה יהודה במסירות נפש עילאית בעת התמודדותו עם אלצהיימר, ודאגה לכבודו עד נשימתו האחרונה. לאחר פטירתו, נשאה את הגעגוע אליו בלבה במשך 22 שנים ארוכות, תוך שהיא משמשת כעמוד התווך לנכדיה.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">במשך כחמש שנים טיפלה זאזו בבעלה יהודה במסירות נפש עילאית בעת התמודדותו עם אלצהיימר, ודאגה לכבודו עד נשימתו האחרונה. לאחר פטירתו, נשאה את הגעגוע אליו בלבה במשך 22 שנים ארוכות, תוך שהיא משמשת כעמוד התווך לנכדיה.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-amber-700 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">2026 | פרידה בביתה, מוקפת באהבה</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            כשהחלה לסבול מדמנציה, ביקשה שלא יאריכו את חייה מלאכותית ושלא יעבירו אותה מביתה. המשפחה כולה התגייסה, והיא מעולם לא נשארה לבד ולו ליום אחד. ביום חמישי, ט״ז באב תשפ״ו (30 ביולי 2026), לאחר בר מצווה משפחתית וכשהיא עטופה בילדיה, השיבה את נשמתה הטהורה לבורא, בדיוק כפי שביקשה.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">כשהחלה לסבול מדמנציה, ביקשה שלא יאריכו את חייה מלאכותית ושלא יעבירו אותה מביתה. המשפחה כולה התגייסה, והיא מעולם לא נשארה לבד ולו ליום אחד. ביום חמישי, ט״ז באב תשפ״ו (30 ביולי 2026), לאחר בר מצווה משפחתית וכשהיא עטופה בילדיה, השיבה את נשמתה הטהורה לבורא, בדיוק כפי שביקשה.</p>
                     </div>
                 </div>
             </section>
@@ -107,41 +85,27 @@
             <!-- Timeline / Biography - באבא יהודה -->
             <section>
                 <h2 class="text-2xl font-bold text-stone-800 mb-6 border-b-2 border-amber-700/40 pb-2">סיפור חייו של יהודה סבג ז"ל</h2>
-                
                 <div class="relative border-r-2 border-stone-200 pr-6 space-y-8 text-right">
-                    
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">1927 | ילדות ושורשים בסאפי ומרקש</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            יהודה נולד בעיר סאפי, בן בכור לשמעון וסעדה ז״ל, למשפחה שורשית של רבנים. במרקש החלה להיבנות אישיותו – שילוב של חריצות, אהבת אדם ואהבה למוזיקה. למד בבית הספר "אליאנס" ובערבים בישיבה.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">יהודה נולד בעיר סאפי, בן בכור לשמעון וסעדה ז״ל, למשפחה שורשית של רבנים. במרקש החלה להיבנות אישיותו – שילוב של חריצות, אהבת אדם ואהבה למוזיקה. למד בבית הספר "אליאנס" ובערבים בישיבה.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">"קנקן תה בכל יום"</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            בגיל 11, בעודו לומד ספרות אצל דודו, הוקסם מהנגנים הסמוכים. האמרגן דוד זריהן שאל אם ברצונו ללמוד נגינה בעוד ואמר: "התשלום שלך יהיה קנקן תה בכל יום, ואני אלמד אותך". משם צמח להיות נגן אנדלוסי מבוקש ומוערך ברחבי מרוקו.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בגיל 11, בעודו לומד ספרות אצל דודו, הוקסם מהנגנים הסמוכים. האמרגן דוד זריהן שאל אם ברצונו ללמוד נגינה בעוד ואמר: "התשלום שלך יהיה קנקן תה בכל יום, ואני אלמד אותך". משם צמח להיות נגן אנדלוסי מבוקש ומוערך ברחבי מרוקו.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">ספרות, מוזיקה והמשכיות</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            בארץ פתח את "מספרת הדרום" בדרך בית לחם (ומאוחר יותר ברשב"ג), ופרנס את משפחתו ביום בעודו מנגן ושר בשמחות בלילה. ב-1972, בנו בן ה-12 הפתיע אותו כשסיפר לקוח, ומאז עבדו יחד עד סגירת המספרה ב-1978.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">בארץ פתח את "מספרת הדרום" בדרך בית לחם (ומאוחר יותר ברשב"ג), ופרנס את משפחתו ביום בעודו מנגן ושר בשמחות בלילה. ב-1972, בנו בן ה-12 הפתיע אותו כשסיפר לקוח, ומאז עבדו יחד עד סגירת המספרה ב-1978.</p>
                     </div>
-
                     <div class="relative">
                         <div class="absolute -right-[31px] bg-stone-500 w-4 h-4 rounded-full border-4 border-white"></div>
                         <h3 class="font-bold text-lg text-stone-900">2004 | פרישה ופטירתו</h3>
-                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">
-                            יהודה ידע לפרוש מהבמה בזמן כדי להשאיר זיכרון של אמן דגול. לאחר התמודדות עם אלצהיימר, החזיר את נשמתו לבורא ביום י״ג באלול תשס״ד. מי ששמע אותו מנגן – לעולם לא שכח.
-                        </p>
+                        <p class="text-gray-700 text-sm mt-2 leading-relaxed">יהודה ידע לפרוש מהבמה בזמן כדי להשאיר זיכרון של אמן דגול. לאחר התמודדות עם אלצהיימר, החזיר את נשמתו לבורא ביום י״ג באלול תשס״ד. מי ששמע אותו מנגן – לעולם לא שכח.</p>
                     </div>
-
                 </div>
             </section>
 
@@ -157,35 +121,57 @@
 
             <!-- Media Gallery (17 Images) -->
             <section>
-                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">גלריית זיכרונות</h2>
+                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">גלריית זיכרונות משפחתית</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <img src="pic1.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 1" onerror="this.style.display='none'">
-                    <img src="pic2.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 2" onerror="this.style.display='none'">
-                    <img src="pic3.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 3" onerror="this.style.display='none'">
-                    <img src="pic4.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 4" onerror="this.style.display='none'">
-                    <img src="pic5.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 5" onerror="this.style.display='none'">
-                    <img src="pic6.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 6" onerror="this.style.display='none'">
-                    <img src="pic7.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 7" onerror="this.style.display='none'">
-                    <img src="pic8.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 8" onerror="this.style.display='none'">
-                    <img src="pic9.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 9" onerror="this.style.display='none'">
-                    <img src="pic10.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 10" onerror="this.style.display='none'">
-                    <img src="pic11.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 11" onerror="this.style.display='none'">
-                    <img src="pic12.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 12" onerror="this.style.display='none'">
-                    <img src="pic13.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 13" onerror="this.style.display='none'">
-                    <img src="pic14.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 14" onerror="this.style.display='none'">
-                    <img src="pic15.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 15" onerror="this.style.display='none'">
-                    <img src="pic16.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 16" onerror="this.style.display='none'">
-                    <img src="pic17.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" alt="זיכרון 17" onerror="this.style.display='none'">
+                    <img src="pic1.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic2.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic3.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic4.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic5.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic6.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic7.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic8.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic9.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic10.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic11.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic12.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic13.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic14.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic15.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic16.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <img src="pic17.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
                 </div>
             </section>
 
-            <!-- Digital Candle -->
+            <!-- העלאת תמונות מבקרים -->
+            <section class="bg-stone-100 p-6 rounded-xl border border-stone-200">
+                <h2 class="text-lg font-bold text-stone-800 mb-2">הוסף תמונה לזכרם</h2>
+                <p class="text-sm text-stone-600 mb-4">שתפו תמונה מהרגעים היפים יחד.</p>
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <input type="file" id="photoInput" accept="image/*" class="w-full text-sm text-stone-500 file:mr-0 file:ml-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
+                    <button id="uploadPhotoBtn" class="bg-stone-700 text-white px-4 py-2 rounded-full hover:bg-stone-600 transition font-semibold text-sm whitespace-nowrap shadow-sm">העלה</button>
+                </div>
+                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mt-3 hidden">מעלה תמונה, אנא המתן...</p>
+                
+                <!-- כאן יופיעו התמונות שהועלו -->
+                <div id="dynamicGallery" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6"></div>
+            </section>
+
+            <!-- Digital Candle (משודרג עם שם ושעה) -->
             <section class="text-center bg-stone-50 py-8 rounded-xl border border-stone-100 shadow-inner">
-                <button id="candleBtn" class="bg-stone-800 text-white px-8 py-3 rounded-full shadow-lg hover:bg-stone-700 transition-colors duration-300 flex items-center justify-center mx-auto space-x-2 space-x-reverse font-semibold">
-                    <span class="text-xl">🕯️</span>
-                    <span>הדלק נר לזכרם</span>
-                </button>
-                <p id="candleCount" class="text-sm text-stone-500 mt-4">טוען נתונים...</p>
+                <h2 class="text-xl font-bold text-stone-800 mb-4">הדלקת נר זיכרון</h2>
+                <div class="max-w-xs mx-auto space-y-3" id="candleFormDiv">
+                    <input type="text" id="candleNameInput" placeholder="השם שלך" class="w-full px-4 py-2 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-700 text-center">
+                    <button id="candleBtn" class="w-full bg-stone-800 text-white px-8 py-3 rounded-full shadow-lg hover:bg-stone-700 transition-colors duration-300 flex items-center justify-center space-x-2 space-x-reverse font-semibold">
+                        <span class="text-xl">🕯️</span>
+                        <span>הדלק נר לזכרם</span>
+                    </button>
+                </div>
+                
+                <p id="candleCountText" class="text-sm font-semibold text-stone-600 mt-6">טוען נתונים...</p>
+                
+                <!-- רשימת מדליקי הנרות -->
+                <div id="candleLightersList" class="mt-4 max-h-40 overflow-y-auto custom-scrollbar text-sm text-stone-600 space-y-2 border-t border-stone-200 pt-4 w-3/4 mx-auto"></div>
             </section>
 
             <!-- Guestbook -->
@@ -195,18 +181,19 @@
                 <form id="messageForm" class="mb-8 space-y-4">
                     <input type="text" id="senderName" placeholder="השם שלך" required class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white">
                     <textarea id="messageText" placeholder="כתוב זיכרון משותף, הקדשה או מילה טובה..." required rows="3" class="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500 bg-white"></textarea>
-                    <button type="submit" class="w-full bg-stone-700 text-white px-4 py-2 rounded-lg hover:bg-stone-600 transition duration-300 font-semibold">שלח הקדשה</button>
+                    <button type="submit" class="w-full bg-stone-700 text-white px-4 py-2 rounded-lg hover:bg-stone-600 transition duration-300 font-semibold shadow-sm">שלח הקדשה</button>
                 </form>
 
-                <div id="messagesList" class="space-y-4 max-h-96 overflow-y-auto messages-container pr-2"></div>
+                <div id="messagesList" class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar pr-2"></div>
             </section>
 
         </div>
     </div>
 
-    <!-- Firebase Libraries -->
+    <!-- Firebase Libraries (כולל עכשיו גם את Storage) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics-compat.js"></script>
 
     <script>
@@ -223,37 +210,123 @@
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
+        const storage = firebase.storage();
         const analytics = firebase.analytics();
 
-        // Candle Logic
-        const candleCountRef = db.ref('candleCount');
-        const candleText = document.getElementById('candleCount');
+        // -----------------------------------------
+        // 1. Candle Logic (With Names & Time)
+        // -----------------------------------------
+        const candlesListRef = db.ref('candlesHistory');
+        const totalCandlesRef = db.ref('candleCount');
         const candleBtn = document.getElementById('candleBtn');
-        let hasLitCandle = localStorage.getItem('candleLit') === 'true';
+        const candleNameInput = document.getElementById('candleNameInput');
+        const candleFormDiv = document.getElementById('candleFormDiv');
+        let hasLitCandle = localStorage.getItem('candleLit_v2') === 'true';
 
-        if (hasLitCandle) setCandleLitUI();
-
-        candleCountRef.on('value', (snapshot) => {
-            const count = snapshot.val() || 0;
-            candleText.innerText = `${count} אנשים הדליקו נר לזכרם`;
-        });
+        if (hasLitCandle) {
+            candleFormDiv.innerHTML = "<div class='bg-amber-700 text-white px-8 py-3 rounded-full font-semibold cursor-default'><span class='text-xl'>🕯️</span> הנר שלך דולק</div>";
+        }
 
         candleBtn.addEventListener('click', () => {
             if (hasLitCandle) return;
-            candleCountRef.set(firebase.database.ServerValue.increment(1)).then(() => {
+            const name = candleNameInput.value.trim();
+            if (!name) {
+                alert("אנא הזן את שמך כדי להדליק נר.");
+                return;
+            }
+
+            const now = new Date();
+            const timeString = now.toLocaleDateString('he-IL') + " - " + now.toLocaleTimeString('he-IL', {hour: '2-digit', minute:'2-digit'});
+
+            // Save name and time
+            candlesListRef.push({ name: name, time: timeString }).then(() => {
+                // Increment total count
+                totalCandlesRef.set(firebase.database.ServerValue.increment(1));
+                
+                localStorage.setItem('candleLit_v2', 'true');
                 hasLitCandle = true;
-                localStorage.setItem('candleLit', 'true');
-                setCandleLitUI();
+                candleFormDiv.innerHTML = "<div class='bg-amber-700 text-white px-8 py-3 rounded-full font-semibold cursor-default shadow-lg'><span class='text-xl'>🕯️</span> תודה, "+name+", הנר שלך דולק</div>";
             });
         });
 
-        function setCandleLitUI() {
-            candleBtn.innerHTML = "<span class='text-xl'>🕯️</span><span>הנר שלך דולק</span>";
-            candleBtn.classList.remove('bg-stone-800', 'hover:bg-stone-700');
-            candleBtn.classList.add('bg-amber-700', 'cursor-default');
-        }
+        // Listen for total candles count
+        totalCandlesRef.on('value', (snapshot) => {
+            const count = snapshot.val() || 0;
+            document.getElementById('candleCountText').innerText = `${count} נרות הודלקו לזכרם`;
+        });
 
-        // Guestbook Logic
+        // Listen for people who lit candles
+        candlesListRef.on('value', (snapshot) => {
+            const listDiv = document.getElementById('candleLightersList');
+            listDiv.innerHTML = '';
+            const data = snapshot.val();
+            if (data) {
+                const arr = Object.values(data).reverse();
+                arr.forEach(item => {
+                    listDiv.innerHTML += `<div class="bg-white py-1 px-3 rounded-full shadow-sm inline-block mx-1 my-1 border border-stone-100">🕯️ ${item.name} <span class="text-xs text-stone-400">(${item.time})</span></div>`;
+                });
+            }
+        });
+
+        // -----------------------------------------
+        // 2. Photo Upload & Dynamic Gallery
+        // -----------------------------------------
+        const dynamicGalleryRef = db.ref('visitorGallery');
+        const uploadBtn = document.getElementById('uploadPhotoBtn');
+        const photoInput = document.getElementById('photoInput');
+        const uploadStatus = document.getElementById('uploadStatus');
+
+        uploadBtn.addEventListener('click', () => {
+            const file = photoInput.files[0];
+            if (!file) {
+                alert("אנא בחר תמונה להעלאה.");
+                return;
+            }
+
+            uploadStatus.classList.remove('hidden');
+            uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
+            uploadStatus.className = "text-sm font-semibold text-amber-700 mt-3";
+
+            // Create a unique file name
+            const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + file.name);
+            
+            storageRef.put(file).then((snapshot) => {
+                return snapshot.ref.getDownloadURL();
+            }).then((downloadURL) => {
+                // Save URL to Realtime Database
+                dynamicGalleryRef.push({ url: downloadURL, date: new Date().toLocaleDateString('he-IL') });
+                
+                uploadStatus.innerText = "התמונה הועלתה בהצלחה ותוצג מיד!";
+                uploadStatus.className = "text-sm font-semibold text-green-600 mt-3";
+                photoInput.value = ''; // clear input
+                
+                setTimeout(() => uploadStatus.classList.add('hidden'), 4000);
+            }).catch((error) => {
+                console.error("Upload error: ", error);
+                uploadStatus.innerText = "שגיאה בהעלאה. האם עדכנת את הרשאות ה-Storage ב-Firebase?";
+                uploadStatus.className = "text-sm font-semibold text-red-600 mt-3";
+            });
+        });
+
+        // Listen for new uploaded photos to show them in the gallery
+        dynamicGalleryRef.on('value', (snapshot) => {
+            const dynamicGalleryDiv = document.getElementById('dynamicGallery');
+            dynamicGalleryDiv.innerHTML = '';
+            const data = snapshot.val();
+            if (data) {
+                const photos = Object.values(data).reverse();
+                photos.forEach(photo => {
+                    dynamicGalleryDiv.innerHTML += `<div class="relative group">
+                        <img src="${photo.url}" class="rounded-lg shadow-sm object-cover h-32 w-full bg-stone-100">
+                        <div class="absolute bottom-1 right-2 text-xs text-white bg-black/50 px-2 rounded-full">${photo.date}</div>
+                    </div>`;
+                });
+            }
+        });
+
+        // -----------------------------------------
+        // 3. Guestbook Logic
+        // -----------------------------------------
         const messagesRef = db.ref('messages');
         const messageForm = document.getElementById('messageForm');
         const messagesList = document.getElementById('messagesList');
