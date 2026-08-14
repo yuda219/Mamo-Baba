@@ -8,7 +8,7 @@ const candleFormDiv = document.getElementById('candleFormDiv');
 let hasLitCandle = localStorage.getItem('candleLit_v3') === 'true';
 
 if (hasLitCandle && candleFormDiv) {
-    candleFormDiv.innerHTML = "<div class='bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full font-medium cursor-default backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.1)]'><span class='text-xl'>🕯️</span> הנר שלך דולק</div>";
+    candleFormDiv.innerHTML = "<div class='bg-amber-900/80 border border-amber-500/50 text-amber-100 px-8 py-3 rounded-full font-bold cursor-default backdrop-blur-sm shadow-md inline-flex items-center gap-2'><span class='text-xl animate-pulse'>🕯️</span> <span>הנר שלך דולק במערכת</span></div>";
 }
 
 if (candleBtn) {
@@ -27,29 +27,48 @@ if (candleBtn) {
             localStorage.setItem('candleLit_v3', 'true');
             hasLitCandle = true;
             if (candleFormDiv) {
-                candleFormDiv.innerHTML = "<div class='bg-white/10 border border-white/20 text-white px-8 py-3 rounded-full font-medium cursor-default backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.1)]'><span class='text-xl'>🕯️</span> תודה, "+name+", הנר שלך דולק</div>";
+                candleFormDiv.innerHTML = "<div class='bg-amber-900/80 border border-amber-500/50 text-amber-100 px-8 py-3 rounded-full font-bold cursor-default backdrop-blur-sm shadow-md inline-flex items-center gap-2'><span class='text-xl animate-pulse'>🕯️</span> <span>תודה, "+name+", הנר שלך דולק במערכת</span></div>";
             }
         });
     });
 }
 
-// האזנה לסך הנרות שהודלקו
-totalCandlesRef.on('value', (snapshot) => {
-    const count = snapshot.val() || 0;
-    const countElem = document.getElementById('candleCountText');
-    if (countElem) countElem.innerText = `${count} נרות הודלקו לזכרם`;
-});
-
-// האזנה לרשימת המדליקים
+// האזנה בזמן אמת לרשימת המדליקים וסנכרון מדויק של המונה
 candlesListRef.on('value', (snapshot) => {
     const listDiv = document.getElementById('candleLightersList');
+    const countElem = document.getElementById('candleCountText');
     if (!listDiv) return;
+    
     listDiv.innerHTML = '';
     const data = snapshot.val();
+    
     if (data) {
-        const arr = Object.values(data).reverse();
-        arr.forEach(item => {
-            listDiv.innerHTML += `<div class="bg-white/5 border border-white/10 py-1.5 px-4 rounded-full shadow-sm inline-block mx-1 my-1 backdrop-blur-sm text-stone-200">🕯️ ${item.name} <span class="text-xs text-stone-400 ml-1">(${item.time})</span></div>`;
+        const arr = Object.values(data).reverse(); // החדשים ביותר בראש
+        
+        // עדכון המונה באופן מדויק לפי כמות השמות הקיימים בפועל
+        if (countElem) {
+            countElem.innerText = `${arr.length} נרות הודלקו לזכרם`;
+        }
+
+        // רנדור כל השמות לרשימת הגלילה
+        arr.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = "bg-white/10 hover:bg-white/15 border border-amber-400/20 py-2.5 px-4 rounded-xl flex items-center justify-between text-xs md:text-sm text-amber-100 transition shadow-2xs";
+            card.innerHTML = `
+                <div class="flex items-center gap-2 font-semibold">
+                    <span class="text-amber-400 text-base">🕯️</span>
+                    <span>${item.name}</span>
+                </div>
+                <span class="text-[11px] text-amber-200/60 font-medium">${item.time || ''}</span>
+            `;
+            listDiv.appendChild(card);
         });
+    } else {
+        if (countElem) countElem.innerText = `0 נרות הודלקו לזכרם`;
+        listDiv.innerHTML = `
+            <div class="text-center py-6 text-amber-200/50 text-xs font-medium">
+                עדיין לא הודלקו נרות. היו הראשונים להדליק נר זיכרון!
+            </div>
+        `;
     }
 });
