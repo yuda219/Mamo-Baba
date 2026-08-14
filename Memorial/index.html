@@ -119,10 +119,20 @@
                 </p>
             </section>
 
-            <!-- Media Gallery (17 Images) -->
+            <!-- Media Gallery -->
             <section>
-                <h2 class="text-xl font-bold text-stone-800 mb-6 border-b border-stone-200 pb-2">גלריית זיכרונות משפחתית</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 border-b border-stone-200 pb-4 gap-4">
+                    <h2 class="text-2xl font-bold text-stone-800">גלריית זיכרונות משפחתית</h2>
+                    <!-- אזור העלאת התמונות -->
+                    <div class="bg-stone-100 p-2 rounded-lg border border-stone-200 flex items-center w-full sm:w-auto shadow-sm">
+                        <input type="file" id="photoInput" accept="image/*" class="w-full text-xs text-stone-600 file:mr-0 file:ml-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:font-semibold file:bg-white file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
+                        <button id="uploadPhotoBtn" class="bg-stone-700 text-white px-4 py-1.5 rounded-md hover:bg-stone-600 transition font-semibold text-xs whitespace-nowrap">העלה תמונה</button>
+                    </div>
+                </div>
+                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden">מעלה תמונה, אנא המתן...</p>
+
+                <!-- הגלריה המאוחדת -->
+                <div id="mainGalleryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <img src="pic1.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
                     <img src="pic2.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
                     <img src="pic3.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
@@ -140,24 +150,97 @@
                     <img src="pic15.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
                     <img src="pic16.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
                     <img src="pic17.jpg" class="rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 object-cover h-32 w-full bg-stone-100" onerror="this.style.display='none'">
+                    <!-- תמונות מהענן יתווספו לכאן אוטומטית -->
                 </div>
             </section>
 
-            <!-- העלאת תמונות מבקרים -->
-            <section class="bg-stone-100 p-6 rounded-xl border border-stone-200">
-                <h2 class="text-lg font-bold text-stone-800 mb-2">הוסף תמונה לזכרם</h2>
-                <p class="text-sm text-stone-600 mb-4">שתפו תמונה מהרגעים היפים יחד.</p>
-                <div class="flex items-center space-x-2 space-x-reverse">
-                    <input type="file" id="photoInput" accept="image/*" class="w-full text-sm text-stone-500 file:mr-0 file:ml-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
-                    <button id="uploadPhotoBtn" class="bg-stone-700 text-white px-4 py-2 rounded-full hover:bg-stone-600 transition font-semibold text-sm whitespace-nowrap shadow-sm">העלה</button>
-                </div>
-                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mt-3 hidden">מעלה תמונה, אנא המתן...</p>
+            <!-- עץ המשפחה (גרסה מעוצבת) -->
+            <section class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-inner">
+                <h2 class="text-3xl font-bold text-stone-800 mb-8 border-b-2 border-amber-700/30 pb-3 text-center">עץ המשפחה</h2>
                 
-                <!-- כאן יופיעו התמונות שהועלו -->
-                <div id="dynamicGallery" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6"></div>
+                <!-- סבא וסבתא (השורש) -->
+                <div class="flex flex-col items-center mb-8">
+                    <div class="bg-gradient-to-br from-amber-700 to-stone-800 text-white p-5 rounded-2xl shadow-xl border-4 border-white text-center w-full max-w-sm relative z-10">
+                        <span class="text-3xl block mb-2 drop-shadow-md">🌿</span>
+                        <span class="text-xl font-bold tracking-wide">יהודה ושושנה (ז'אז'ו) סבג ז"ל</span>
+                    </div>
+                    <!-- קו מחבר -->
+                    <div class="w-1.5 h-12 bg-amber-700/30 rounded-full -mt-2"></div>
+                </div>
+
+                <!-- הילדים והנכדים (קלפים) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- משפחת יצחקי -->
+                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
+                            <h3 class="font-bold text-lg text-stone-800">אורה וסמי יצחקי</h3>
+                        </div>
+                        <div class="p-5 flex flex-wrap justify-center gap-2">
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">איתי</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אודליה</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אוהד</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">איתמר</span>
+                        </div>
+                    </div>
+
+                    <!-- משפחת סבג -->
+                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
+                            <h3 class="font-bold text-lg text-stone-800">אבי ויהודית סבג</h3>
+                        </div>
+                        <div class="p-5 flex flex-wrap justify-center gap-2">
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">שנית</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אורטל</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">יהודה</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">חננאל</span>
+                        </div>
+                    </div>
+
+                    <!-- משפחת חן -->
+                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
+                            <h3 class="font-bold text-lg text-stone-800">יעל ודוד חן</h3>
+                        </div>
+                        <div class="p-5 flex flex-wrap justify-center gap-2">
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אודי</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">שירן</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אדווה</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אריאל</span>
+                        </div>
+                    </div>
+
+                    <!-- משפחת נגר -->
+                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
+                            <h3 class="font-bold text-lg text-stone-800">יהודית ואילן נגר</h3>
+                        </div>
+                        <div class="p-5 flex flex-wrap justify-center gap-2">
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">לילך</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">דורין</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אדיר</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">נאור</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">קוראל</span>
+                        </div>
+                    </div>
+
+                    <!-- משפחת בן חיון -->
+                    <div class="bg-white border-2 border-stone-100 rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden md:col-span-2 lg:col-span-1 md:w-1/2 md:mx-auto">
+                        <div class="bg-stone-100 p-3 border-b border-stone-200 text-center">
+                            <h3 class="font-bold text-lg text-stone-800">ויוון ושלומי בן חיון</h3>
+                        </div>
+                        <div class="p-5 flex flex-wrap justify-center gap-2">
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">יותם</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אמיתי</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אביתר</span>
+                            <span class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">אליה</span>
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
-            <!-- Digital Candle (משודרג עם שם ושעה) -->
+            <!-- Digital Candle -->
             <section class="text-center bg-stone-50 py-8 rounded-xl border border-stone-100 shadow-inner">
                 <h2 class="text-xl font-bold text-stone-800 mb-4">הדלקת נר זיכרון</h2>
                 <div class="max-w-xs mx-auto space-y-3" id="candleFormDiv">
@@ -190,7 +273,7 @@
         </div>
     </div>
 
-    <!-- Firebase Libraries (כולל עכשיו גם את Storage) -->
+    <!-- Firebase Libraries -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
@@ -214,7 +297,7 @@
         const analytics = firebase.analytics();
 
         // -----------------------------------------
-        // 1. Candle Logic (With Names & Time)
+        // 1. Candle Logic
         // -----------------------------------------
         const candlesListRef = db.ref('candlesHistory');
         const totalCandlesRef = db.ref('candleCount');
@@ -238,24 +321,19 @@
             const now = new Date();
             const timeString = now.toLocaleDateString('he-IL') + " - " + now.toLocaleTimeString('he-IL', {hour: '2-digit', minute:'2-digit'});
 
-            // Save name and time
             candlesListRef.push({ name: name, time: timeString }).then(() => {
-                // Increment total count
                 totalCandlesRef.set(firebase.database.ServerValue.increment(1));
-                
                 localStorage.setItem('candleLit_v2', 'true');
                 hasLitCandle = true;
                 candleFormDiv.innerHTML = "<div class='bg-amber-700 text-white px-8 py-3 rounded-full font-semibold cursor-default shadow-lg'><span class='text-xl'>🕯️</span> תודה, "+name+", הנר שלך דולק</div>";
             });
         });
 
-        // Listen for total candles count
         totalCandlesRef.on('value', (snapshot) => {
             const count = snapshot.val() || 0;
             document.getElementById('candleCountText').innerText = `${count} נרות הודלקו לזכרם`;
         });
 
-        // Listen for people who lit candles
         candlesListRef.on('value', (snapshot) => {
             const listDiv = document.getElementById('candleLightersList');
             listDiv.innerHTML = '';
@@ -269,7 +347,7 @@
         });
 
         // -----------------------------------------
-        // 2. Photo Upload & Dynamic Gallery
+        // 2. Photo Upload (Merged Gallery)
         // -----------------------------------------
         const dynamicGalleryRef = db.ref('visitorGallery');
         const uploadBtn = document.getElementById('uploadPhotoBtn');
@@ -279,47 +357,51 @@
         uploadBtn.addEventListener('click', () => {
             const file = photoInput.files[0];
             if (!file) {
-                alert("אנא בחר תמונה להעלאה.");
+                alert("אנא בחר תמונה להעלאה באמצעות הכפתור האפור קודם.");
                 return;
             }
 
             uploadStatus.classList.remove('hidden');
             uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
-            uploadStatus.className = "text-sm font-semibold text-amber-700 mt-3";
+            uploadStatus.className = "text-sm font-semibold text-amber-700 mb-4 block";
 
-            // Create a unique file name
             const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + file.name);
             
             storageRef.put(file).then((snapshot) => {
                 return snapshot.ref.getDownloadURL();
             }).then((downloadURL) => {
-                // Save URL to Realtime Database
                 dynamicGalleryRef.push({ url: downloadURL, date: new Date().toLocaleDateString('he-IL') });
                 
-                uploadStatus.innerText = "התמונה הועלתה בהצלחה ותוצג מיד!";
-                uploadStatus.className = "text-sm font-semibold text-green-600 mt-3";
-                photoInput.value = ''; // clear input
+                uploadStatus.innerText = "התמונה הועלתה בהצלחה לגלריה!";
+                uploadStatus.className = "text-sm font-semibold text-green-600 mb-4 block";
+                photoInput.value = ''; 
                 
-                setTimeout(() => uploadStatus.classList.add('hidden'), 4000);
+                setTimeout(() => { uploadStatus.classList.add('hidden'); }, 4000);
             }).catch((error) => {
                 console.error("Upload error: ", error);
                 uploadStatus.innerText = "שגיאה בהעלאה. האם עדכנת את הרשאות ה-Storage ב-Firebase?";
-                uploadStatus.className = "text-sm font-semibold text-red-600 mt-3";
+                uploadStatus.className = "text-sm font-semibold text-red-600 mb-4 block";
             });
         });
 
-        // Listen for new uploaded photos to show them in the gallery
+        // משלב את התמונות מהענן ישירות לתוך הגלריה הראשית
         dynamicGalleryRef.on('value', (snapshot) => {
-            const dynamicGalleryDiv = document.getElementById('dynamicGallery');
-            dynamicGalleryDiv.innerHTML = '';
+            // מוחק תמונות קודמות מהענן כדי לא לשכפל בזמן רענון
+            document.querySelectorAll('.dynamic-photo').forEach(el => el.remove());
+            
             const data = snapshot.val();
             if (data) {
-                const photos = Object.values(data).reverse();
+                const photos = Object.values(data);
+                const mainGallery = document.getElementById('mainGalleryGrid');
+                
                 photos.forEach(photo => {
-                    dynamicGalleryDiv.innerHTML += `<div class="relative group">
-                        <img src="${photo.url}" class="rounded-lg shadow-sm object-cover h-32 w-full bg-stone-100">
+                    const wrapper = document.createElement('div');
+                    wrapper.className = "relative group fade-in dynamic-photo";
+                    wrapper.innerHTML = `
+                        <img src="${photo.url}" class="rounded-lg shadow-sm object-cover h-32 w-full bg-stone-100 hover:shadow-md transition-shadow duration-300">
                         <div class="absolute bottom-1 right-2 text-xs text-white bg-black/50 px-2 rounded-full">${photo.date}</div>
-                    </div>`;
+                    `;
+                    mainGallery.appendChild(wrapper);
                 });
             }
         });
