@@ -6,6 +6,10 @@
     <title>לזכרם של שושנה ויהודה סבג ז"ל</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Swiper CSS לקרוסלה -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <meta name="theme-color" content="#faf9f6">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;600&display=swap');
@@ -53,7 +57,7 @@
             box-shadow: 0 10px 25px -2px rgba(0, 0, 0, 0.08);
         }
 
-        /* שדות קלט יוקרתיים */
+        /* שדות קלט */
         .input-elegant {
             background: transparent;
             border: none;
@@ -65,6 +69,26 @@
         .input-elegant:focus {
             outline: none;
             border-bottom-color: #92400e;
+        }
+
+        /* עיצוב חיצים ונקודות של הקרוסלה (Swiper) */
+        .swiper-button-next, .swiper-button-prev {
+            color: #b45309 !important; /* צבע ענבר */
+            background: rgba(255, 255, 255, 0.8);
+            width: 35px !important;
+            height: 35px !important;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 16px !important;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #b45309 !important;
+        }
+        .gallery-swiper {
+            padding-bottom: 40px !important; /* מרווח לנקודות למטה */
         }
     </style>
 </head>
@@ -269,9 +293,9 @@
                 </p>
             </section>
 
-            <!-- Media Gallery -->
+            <!-- Media Gallery (קרוסלה - Swiper) -->
             <section>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 border-b border-stone-200 pb-4 gap-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-4 border-b border-stone-200 pb-4 gap-4">
                     <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">גלריית זיכרונות</h2>
                     
                     <div class="bg-white p-2 rounded-full border border-stone-200 flex items-center w-full sm:w-auto shadow-sm">
@@ -281,24 +305,32 @@
                 </div>
                 <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden text-center">מעלה תמונה, אנא המתן...</p>
 
-                <div id="mainGalleryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                    <img src="pic1.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic2.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic3.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic4.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic5.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic6.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic7.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic8.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic9.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic10.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic11.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic12.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic13.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic14.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic15.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic16.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
-                    <img src="pic17.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100 cursor-pointer" onerror="this.style.display='none'">
+                <!-- קרוסלת התמונות -->
+                <div class="swiper gallery-swiper overflow-hidden">
+                    <div class="swiper-wrapper" id="mainGalleryWrapper">
+                        <!-- תמונות קבועות -->
+                        <div class="swiper-slide"><img src="pic1.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic2.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic3.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic4.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic5.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic6.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic7.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic8.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic9.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic10.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic11.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic12.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic13.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic14.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic15.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic16.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <div class="swiper-slide"><img src="pic17.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                    </div>
+                    <!-- כפתורי ניווט -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev hidden md:flex"></div>
+                    <div class="swiper-button-next hidden md:flex"></div>
                 </div>
             </section>
 
@@ -353,8 +385,29 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script>
+        // אתחול Swiper קרוסלה
+        let gallerySwiper = new Swiper(".gallery-swiper", {
+            slidesPerView: 2,
+            spaceBetween: 15,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: { slidesPerView: 3, spaceBetween: 20 },
+                768: { slidesPerView: 4, spaceBetween: 20 }
+            }
+        });
+
         const firebaseConfig = {
             apiKey: "AIzaSyC6s7EJsjvHkAY4AhoMSF12RMoiFg1QhLo",
             authDomain: "mamo2026-29b4a.firebaseapp.com",
@@ -375,7 +428,6 @@
             modalImage.src = src;
             imageModal.classList.remove('hidden');
             imageModal.classList.add('flex');
-            // השהייה קלה מאפשרת לאנימציית העמעום לעבוד
             setTimeout(() => {
                 imageModal.classList.remove('opacity-0');
             }, 10);
@@ -439,7 +491,7 @@
             }
         });
 
-        // 2. Photo Upload
+        // 2. Photo Upload (לתוך הקרוסלה)
         const dynamicGalleryRef = db.ref('visitorGallery');
         const uploadBtn = document.getElementById('uploadPhotoBtn');
         const photoInput = document.getElementById('photoInput');
@@ -476,22 +528,28 @@
         });
 
         dynamicGalleryRef.on('value', (snapshot) => {
-            document.querySelectorAll('.dynamic-photo').forEach(el => el.remove());
+            // מסירים תמונות דינמיות ישנות כדי לא לשכפל את הקרוסלה
+            document.querySelectorAll('.dynamic-slide').forEach(el => el.remove());
             const data = snapshot.val();
             if (data) {
                 const photos = Object.values(data);
-                const mainGallery = document.getElementById('mainGalleryGrid');
+                const wrapper = document.getElementById('mainGalleryWrapper');
                 
                 photos.forEach(photo => {
-                    const wrapper = document.createElement('div');
-                    wrapper.className = "relative group fade-in dynamic-photo overflow-hidden rounded-xl cursor-pointer";
-                    // הוספנו את פונקציית openModal גם לתמונות שמגיעות מהענן
-                    wrapper.innerHTML = `
-                        <img src="${photo.url}" onclick="openModal(this.src)" class="rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 object-cover h-40 w-full bg-stone-100">
-                        <div class="absolute bottom-2 right-2 text-[10px] text-white bg-black/60 px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none">${photo.date}</div>
+                    const slide = document.createElement('div');
+                    slide.className = "swiper-slide dynamic-slide";
+                    slide.innerHTML = `
+                        <div class="relative group h-full">
+                            <img src="${photo.url}" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full cursor-pointer">
+                            <div class="absolute bottom-2 right-2 text-[10px] text-white bg-black/60 px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none">${photo.date}</div>
+                        </div>
                     `;
-                    mainGallery.appendChild(wrapper);
+                    // מוסיף את התמונות החדשות בהתחלה של הקרוסלה (מיד אחרי התמונות הקבועות)
+                    wrapper.appendChild(slide);
                 });
+                
+                // מעדכן את הקרוסלה אחרי הוספת האלמנטים
+                gallerySwiper.update();
             }
         });
 
