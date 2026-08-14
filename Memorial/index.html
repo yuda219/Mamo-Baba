@@ -74,21 +74,43 @@
         /* עיצוב חיצים ונקודות של הקרוסלה (Swiper) */
         .swiper-button-next, .swiper-button-prev {
             color: #b45309 !important; /* צבע ענבר */
-            background: rgba(255, 255, 255, 0.8);
-            width: 35px !important;
-            height: 35px !important;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(6px);
+            width: 42px !important;
+            height: 42px !important;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #b45309 !important;
+            color: #ffffff !important;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(180,83,9,0.3);
         }
         .swiper-button-next::after, .swiper-button-prev::after {
             font-size: 16px !important;
             font-weight: bold;
         }
+        .swiper-pagination-bullet {
+            background: #a8a29e !important;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
         .swiper-pagination-bullet-active {
             background-color: #b45309 !important;
+            opacity: 1;
+            width: 22px !important;
+            border-radius: 10px !important;
+            box-shadow: 0 0 10px rgba(180,83,9,0.4);
         }
         .gallery-swiper {
-            padding-bottom: 40px !important; /* מרווח לנקודות למטה */
+            padding-bottom: 50px !important; /* מרווח לנקודות למטה */
+        }
+        
+        .group-hover\:scale-108:hover {
+            transform: scale(1.08);
         }
     </style>
 </head>
@@ -294,38 +316,48 @@
             </section>
 
             <!-- Media Gallery (קרוסלה - Swiper) -->
-            <section>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-4 border-b border-stone-200 pb-4 gap-4">
-                    <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">גלריית זיכרונות</h2>
+            <section class="bg-stone-50/70 p-6 md:p-8 rounded-3xl border border-stone-200/80 shadow-sm relative">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-stone-200/80 pb-5 gap-4">
+                    <div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <h2 class="text-3xl font-bold text-stone-800 font-serif-custom">גלריית זיכרונות</h2>
+                            <span id="photoCountBadge" class="text-xs bg-amber-100 text-amber-900 border border-amber-300/80 font-semibold px-3 py-1 rounded-full shadow-xs">16 תמונות</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mt-1">כל התמונות והמזכרות מרוכזות בקרוסלה אחת | לחצו על תמונה להגדלה</p>
+                    </div>
                     
-                    <div class="bg-white p-2 rounded-full border border-stone-200 flex items-center w-full sm:w-auto shadow-sm">
-                        <input type="file" id="photoInput" accept="image/*" class="w-full text-xs text-stone-600 file:mr-0 file:ml-2 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-medium file:bg-stone-100 file:text-stone-700 hover:file:bg-stone-200 cursor-pointer">
-                        <button id="uploadPhotoBtn" class="bg-stone-800 text-white px-5 py-2 rounded-full hover:bg-amber-800 transition font-medium text-xs whitespace-nowrap">העלה תמונה</button>
+                    <!-- אזור העלאת תמונה -->
+                    <div class="bg-white p-2.5 rounded-2xl border border-stone-200/90 flex flex-col sm:flex-row items-center w-full md:w-auto shadow-xs gap-2">
+                        <label for="photoInput" class="cursor-pointer bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium flex items-center gap-2 transition border border-stone-200/60 w-full sm:w-auto justify-center">
+                            <span class="text-base">📸</span>
+                            <span id="fileInputLabel">בחר תמונה להעלאה</span>
+                            <input type="file" id="photoInput" accept="image/*" class="hidden">
+                        </label>
+                        <button id="uploadPhotoBtn" class="bg-stone-900 hover:bg-amber-800 text-white px-5 py-2 rounded-xl transition font-medium text-xs whitespace-nowrap w-full sm:w-auto shadow-xs flex items-center justify-center gap-1.5">
+                            <span>⬆️</span>
+                            <span>העלה לגלריה</span>
+                        </button>
                     </div>
                 </div>
-                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden text-center">מעלה תמונה, אנא המתן...</p>
 
-                <!-- קרוסלת התמונות -->
-                <div class="swiper gallery-swiper overflow-hidden">
+                <!-- תצוגה מקדימה לתמונה לפני העלאה -->
+                <div id="uploadPreviewDiv" class="hidden mb-5 p-3.5 bg-amber-50/90 border border-amber-200 rounded-2xl flex items-center justify-between shadow-xs">
+                    <div class="flex items-center gap-3">
+                        <img id="uploadPreviewImg" src="" class="w-12 h-12 object-cover rounded-xl border border-amber-300 shadow-xs">
+                        <div>
+                            <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider block">תצוגה מקדימה להעלאה</span>
+                            <span id="uploadPreviewName" class="text-xs font-medium text-stone-800 truncate max-w-[220px] block"></span>
+                        </div>
+                    </div>
+                    <button id="cancelUploadPreview" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1.5 rounded-lg transition">&times; ביטול</button>
+                </div>
+                
+                <p id="uploadStatus" class="text-sm font-semibold text-amber-700 mb-4 hidden text-center"></p>
+
+                <!-- קרוסלת התמונות המרכזית -->
+                <div class="swiper gallery-swiper overflow-hidden rounded-2xl">
                     <div class="swiper-wrapper" id="mainGalleryWrapper">
-                        <!-- תמונות קבועות -->
-                        <div class="swiper-slide"><img src="pic1.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic2.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic3.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic4.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic5.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic6.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic7.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic8.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic9.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic10.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic11.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic12.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic13.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic14.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic15.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic16.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
-                        <div class="swiper-slide"><img src="pic17.jpg" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full bg-stone-100 cursor-pointer" onerror="this.parentElement.style.display='none'"></div>
+                        <!-- הרנדור מתבצע דינמית בסקריפט לקרוסלה אחידה -->
                     </div>
                     <!-- כפתורי ניווט -->
                     <div class="swiper-pagination"></div>
@@ -390,10 +422,23 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script>
+        // תמונות ארכיון קבועות
+        const staticPhotos = [
+            'pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg',
+            'pic5.jpg', 'pic6.jpg', 'pic7.jpg', 'pic8.jpg',
+            'pic9.jpg', 'pic10.jpg', 'pic11.jpg', 'pic12.jpg',
+            'pic13.jpg', 'pic14.jpg', 'pic15.jpg', 'pic16.jpg'
+        ];
+
         // אתחול Swiper קרוסלה
         let gallerySwiper = new Swiper(".gallery-swiper", {
-            slidesPerView: 2,
-            spaceBetween: 15,
+            slidesPerView: 1.3,
+            spaceBetween: 16,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -403,10 +448,70 @@
                 prevEl: ".swiper-button-prev",
             },
             breakpoints: {
+                480: { slidesPerView: 2, spaceBetween: 16 },
                 640: { slidesPerView: 3, spaceBetween: 20 },
                 768: { slidesPerView: 4, spaceBetween: 20 }
             }
         });
+
+        // יצירת אלמנט Slide בקרוסלה
+        function createSlideElement(src, badgeText, isUploaded = false) {
+            const slide = document.createElement('div');
+            slide.className = isUploaded ? "swiper-slide dynamic-slide" : "swiper-slide static-slide";
+            
+            const badgeBg = isUploaded 
+                ? "bg-amber-900/80 text-amber-100 border-amber-500/40" 
+                : "bg-stone-900/70 text-stone-200 border-white/20";
+
+            slide.innerHTML = `
+                <div class="relative group h-52 md:h-60 rounded-2xl overflow-hidden shadow-md cursor-pointer border border-stone-200/80 bg-stone-100 transition-all duration-300 hover:shadow-xl" onclick="openModal('${src}')">
+                    <img src="${src}" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" onerror="this.closest('.swiper-slide').remove(); if(typeof gallerySwiper !== 'undefined') gallerySwiper.update();">
+                    
+                    <!-- Overlay עם אייקון הגדלה -->
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white backdrop-blur-[2px]">
+                        <span class="text-2xl mb-1 transform group-hover:scale-110 transition-transform">🔍</span>
+                        <span class="text-xs font-medium tracking-wide">לחץ להגדלה</span>
+                    </div>
+
+                    <!-- תווית תאריך / סוג -->
+                    <div class="absolute bottom-2.5 right-2.5 text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-md border ${badgeBg} shadow-xs pointer-events-none">
+                        ${badgeText}
+                    </div>
+                </div>
+            `;
+            return slide;
+        }
+
+        // טעינת תמונות ראשונית ועדכון דינמי מ-Firebase
+        function renderGallery(visitorPhotos = []) {
+            const wrapper = document.getElementById('mainGalleryWrapper');
+            if (!wrapper) return;
+            wrapper.innerHTML = '';
+
+            let totalCount = 0;
+
+            // תמונות מועלות מהמבקרים (חדשות ביותר ראשונות)
+            const uploadedArray = [...visitorPhotos].reverse();
+            uploadedArray.forEach(photo => {
+                const dateText = photo.date ? `מבקרים | ${photo.date}` : "תמונת מבקרים";
+                wrapper.appendChild(createSlideElement(photo.url, dateText, true));
+                totalCount++;
+            });
+
+            // תמונות ארכיון קבועות
+            staticPhotos.forEach((src, idx) => {
+                wrapper.appendChild(createSlideElement(src, `ארכיון #${idx + 1}`, false));
+                totalCount++;
+            });
+
+            const badge = document.getElementById('photoCountBadge');
+            if (badge) badge.innerText = `${totalCount} תמונות בגלריה`;
+
+            gallerySwiper.update();
+        }
+
+        // אתחול גלריית הבסיס
+        renderGallery([]);
 
         const firebaseConfig = {
             apiKey: "AIzaSyC6s7EJsjvHkAY4AhoMSF12RMoiFg1QhLo",
@@ -491,10 +596,38 @@
             }
         });
 
-        // 2. Photo Upload (לתוך הקרוסלה)
+        // 2. Photo Upload & Preview
+        const photoInput = document.getElementById('photoInput');
+        const fileInputLabel = document.getElementById('fileInputLabel');
+        const uploadPreviewDiv = document.getElementById('uploadPreviewDiv');
+        const uploadPreviewImg = document.getElementById('uploadPreviewImg');
+        const uploadPreviewName = document.getElementById('uploadPreviewName');
+        const cancelUploadPreview = document.getElementById('cancelUploadPreview');
+
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileInputLabel.innerText = file.name;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    uploadPreviewImg.src = event.target.result;
+                    uploadPreviewName.innerText = file.name;
+                    uploadPreviewDiv.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        if (cancelUploadPreview) {
+            cancelUploadPreview.addEventListener('click', () => {
+                photoInput.value = '';
+                fileInputLabel.innerText = 'בחר תמונה להעלאה';
+                uploadPreviewDiv.classList.add('hidden');
+            });
+        }
+
         const dynamicGalleryRef = db.ref('visitorGallery');
         const uploadBtn = document.getElementById('uploadPhotoBtn');
-        const photoInput = document.getElementById('photoInput');
         const uploadStatus = document.getElementById('uploadStatus');
 
         uploadBtn.addEventListener('click', () => {
@@ -505,8 +638,8 @@
             }
 
             uploadStatus.classList.remove('hidden');
-            uploadStatus.innerText = "מעלה תמונה, אנא המתן...";
-            uploadStatus.className = "text-sm font-medium text-amber-700 mb-4 text-center block";
+            uploadStatus.innerText = "מעלה תמונה לקרוסלה, אנא המתן...";
+            uploadStatus.className = "text-sm font-medium text-amber-700 mb-4 text-center block animate-pulse";
 
             const storageRef = storage.ref('visitor_photos/' + Date.now() + '_' + file.name);
             
@@ -518,39 +651,21 @@
                 uploadStatus.innerText = "התמונה הועלתה בהצלחה לגלריה!";
                 uploadStatus.className = "text-sm font-medium text-green-600 mb-4 text-center block";
                 photoInput.value = ''; 
+                fileInputLabel.innerText = 'בחר תמונה להעלאה';
+                uploadPreviewDiv.classList.add('hidden');
                 
                 setTimeout(() => { uploadStatus.classList.add('hidden'); }, 4000);
             }).catch((error) => {
                 console.error(error);
-                uploadStatus.innerText = "שגיאה בהעלאה.";
+                uploadStatus.innerText = "שגיאה בהעלאה. אנא נסה שוב.";
                 uploadStatus.className = "text-sm font-medium text-red-600 mb-4 text-center block";
             });
         });
 
         dynamicGalleryRef.on('value', (snapshot) => {
-            // מסירים תמונות דינמיות ישנות כדי לא לשכפל את הקרוסלה
-            document.querySelectorAll('.dynamic-slide').forEach(el => el.remove());
             const data = snapshot.val();
-            if (data) {
-                const photos = Object.values(data);
-                const wrapper = document.getElementById('mainGalleryWrapper');
-                
-                photos.forEach(photo => {
-                    const slide = document.createElement('div');
-                    slide.className = "swiper-slide dynamic-slide";
-                    slide.innerHTML = `
-                        <div class="relative group h-full">
-                            <img src="${photo.url}" onclick="openModal(this.src)" class="rounded-xl shadow-sm object-cover h-48 w-full cursor-pointer">
-                            <div class="absolute bottom-2 right-2 text-[10px] text-white bg-black/60 px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none">${photo.date}</div>
-                        </div>
-                    `;
-                    // מוסיף את התמונות החדשות בהתחלה של הקרוסלה (מיד אחרי התמונות הקבועות)
-                    wrapper.appendChild(slide);
-                });
-                
-                // מעדכן את הקרוסלה אחרי הוספת האלמנטים
-                gallerySwiper.update();
-            }
+            const photos = data ? Object.values(data) : [];
+            renderGallery(photos);
         });
 
         // 3. Guestbook
